@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 5 — Ensembles de nombres</title>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, chtml: { scale: 1.0 } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  @page { size: A4; margin: 0; }
+  @media print { html, body { background: white; } .page { box-shadow: none; margin: 0; } .page + .page { page-break-before: always; } }
+  html, body { margin: 0; padding: 0; background: #ddd6c5; font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; color: #1a1a1a; }
+  .page { width: 210mm; min-height: 297mm; padding: 16mm 16mm 12mm 16mm; margin: 12mm auto; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.18); box-sizing: border-box; font-size: 11.5pt; line-height: 1.30; }
+  .banner { background: #4b371e; color: white; padding: 8px 14px 10px 14px; border-radius: 3mm; font-family: 'Inter', sans-serif; }
+  .banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
+  .banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+  .banner .top .meta { opacity: 0.85; }
+  .banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+  .banner-mini { border-top: 3pt solid #4b371e; padding: 7pt 0 9pt 0; margin-bottom: 10pt; font-family: 'Inter', sans-serif; display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+  .banner-mini .tag { background: #4b371e; color: white; padding: 3pt 10pt; border-radius: 1mm; font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em; }
+  .banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
+  h2 { font-family: 'EB Garamond', Georgia, serif; font-size: 14pt; color: #4b371e; margin: 12pt 0 2pt 0; border-bottom: 0.4pt solid #b08642; padding-bottom: 1pt; font-weight: 700; }
+  p { margin: 4pt 0; }
+  ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
+  li { margin: 1pt 0; }
+  .tight li { margin: 0.5pt 0; }
+  ol li { padding-left: 4pt; margin: 4pt 0; }
+  ol.subexos { list-style: none; counter-reset: subexo; padding-left: 0; margin: 3pt 0 3pt 14pt; }
+  ol.subexos > li { counter-increment: subexo; margin: 1.5pt 0; padding-left: 22pt; position: relative; }
+  ol.subexos > li::before { content: counter(subexo, lower-alpha) ")"; position: absolute; left: 0; font-weight: 500; color: #6c5a40; width: 18pt; }
+  .diff[data-level="1"] ol.subexos { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18pt; row-gap: 1.5pt; }
+  .diff[data-level="1"] ol.subexos > li { margin: 0; }
+  .illus-block { border: 0.4pt solid #d4d4d4; border-radius: 1mm; padding: 6pt 8pt; background: white; text-align: center; margin: 6pt 0; }
+  .illus-block svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+  .illus-note { font-size: 10pt; color: #6c5a40; font-style: italic; margin-top: 4pt; }
+  .callout { background: #f3eedb; border: 0.5pt solid #b08642; border-radius: 1.5mm; padding: 6pt 10pt; margin-top: 10pt; font-size: 10.5pt; }
+  .callout strong { color: #4b371e; }
+  .diff { margin: 10pt 0 0 0; border-left: 3pt solid; padding: 4pt 0 4pt 10pt; }
+  .diff h3 { font-family: 'EB Garamond', Georgia, serif; font-size: 12.5pt; margin: 0 0 4pt 0; font-weight: 700; }
+  .diff[data-level="1"] { border-color: #6a9a4a; } .diff[data-level="1"] h3 { color: #4b6e2c; }
+  .diff[data-level="2"] { border-color: #c79900; } .diff[data-level="2"] h3 { color: #8a6800; }
+  .diff[data-level="3"] { border-color: #c33737; } .diff[data-level="3"] h3 { color: #8e2424; }
+  .diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
+  strong { color: #1a1a1a; } em { color: #4b371e; }
+  mjx-container { font-size: 1em !important; }
+</style>
+</head>
+<body>
+
+<!-- =================== PAGE 1 =================== -->
+<div class="page">
+
+  <div class="banner">
+    <div class="top">
+      <span class="tag">FICHE 5</span>
+      <span class="meta">Théorie des ensembles &nbsp;•&nbsp; 6<sup>e</sup>/5<sup>e</sup> &nbsp;•&nbsp; Galion 2.0</span>
+    </div>
+    <h1>Ensembles de nombres</h1>
+  </div>
+
+  <h2>Vocabulaire et notations</h2>
+
+  <p><strong>Entiers naturels.</strong> $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$.</p>
+  <ul class="tight">
+    <li>On note $\mathbb{N}^* = \{1, 2, 3, \ldots\}$ les entiers naturels privés de $0$.</li>
+    <li>On peut faire des calculs simples dans $\mathbb{N}$&nbsp;: si $a \in \mathbb{N}$ et $b \in \mathbb{N}$, alors $a + b \in \mathbb{N}$ et $a \times b = ab \in \mathbb{N}$.</li>
+    <li>En revanche $3 - 5$ n'a pas de sens dans $\mathbb{N}$.</li>
+  </ul>
+
+  <p><strong>Entiers relatifs.</strong> $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$.</p>
+  <ul class="tight">
+    <li>On a $\mathbb{N} \subset \mathbb{Z}$&nbsp;: tout entier naturel est un entier relatif.</li>
+    <li>$\mathbb{Z}$ étend le champ des calculs possibles&nbsp;: si $a, b \in \mathbb{Z}$ (raccourci pour «&nbsp;$a \in \mathbb{Z}$ et $b \in \mathbb{Z}$&nbsp;»), alors on a toujours $a - b \in \mathbb{Z}$. Cependant, $a \div b$ ne donne toujours pas un élément de $\mathbb{Z}$ (par exemple $2 \div 3$).</li>
+  </ul>
+
+  <p><strong>Rationnels.</strong> $\mathbb{Q}$ est l'ensemble des nombres qui s'écrivent comme une fraction $\frac{p}{q}$ avec $p \in \mathbb{Z}$ et $q \in \mathbb{N}^*$.</p>
+  <ul class="tight">
+    <li>On a $\mathbb{Z} \subset \mathbb{Q}$&nbsp;: tout entier $n$ s'écrit $\frac{n}{1}$.</li>
+    <li>Plusieurs fractions désignent le même rationnel&nbsp;: $\frac{1}{2} = \frac{2}{4} = \frac{3}{6} = \cdots$</li>
+    <li>Limite&nbsp;: il existe des nombres usuels qui ne sont pas dans $\mathbb{Q}$, comme $\sqrt{2}$ ou $\pi$.</li>
+  </ul>
+
+  <p><strong>Réels.</strong> $\mathbb{R}$ contient tous les rationnels et aussi les nombres <strong>irrationnels</strong> tels que $\sqrt{2}$, $\pi$, $e$.</p>
+  <ul class="tight">
+    <li>On a $\mathbb{Q} \subset \mathbb{R}$.</li>
+    <li>$\mathbb{R}$ contient tous les nombres qu'on peut placer sur une droite graduée.</li>
+  </ul>
+
+  <p><strong>Chaîne d'inclusions strictes.</strong> $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$.</p>
+
+  <p><strong>Notations courantes.</strong> $\mathbb{R}^+$ = réels positifs ou nuls&nbsp;; $\mathbb{R}^-$ = réels négatifs ou nuls&nbsp;; $\mathbb{R}^*$ = $\mathbb{R}$ privé de $0$. Idem pour $\mathbb{Z}^*, \mathbb{Q}^*$.</p>
+
+  <h2>Illustration</h2>
+  <div class="illus-block">
+    <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="210" cy="100" rx="200" ry="85" fill="#fcf3df" fill-opacity="0.35" stroke="#4b371e" stroke-width="1.4"/>
+      <ellipse cx="210" cy="100" rx="155" ry="65" fill="#cfe1f2" fill-opacity="0.30" stroke="#4b371e" stroke-width="1.3"/>
+      <ellipse cx="210" cy="100" rx="105" ry="44" fill="#dfeed4" fill-opacity="0.45" stroke="#4b371e" stroke-width="1.3"/>
+      <ellipse cx="210" cy="100" rx="55" ry="22" fill="#f5d6a3" fill-opacity="0.55" stroke="#4b371e" stroke-width="1.3"/>
+      <g font-family="EB Garamond, Georgia, serif" font-size="14" font-style="italic" fill="#4b371e" text-anchor="middle">
+        <text x="210" y="28">ℝ</text>
+        <text x="210" y="48">ℚ</text>
+        <text x="210" y="66">ℤ</text>
+        <text x="210" y="86">ℕ</text>
+      </g>
+      <g font-family="EB Garamond, Georgia, serif" font-size="13" fill="#1a1a1a">
+        <text x="200" y="105" text-anchor="middle">$0,\ 7$</text>
+        <text x="142" y="108">$-3$</text>
+        <text x="270" y="108">$-1$</text>
+        <text x="78" y="115">$\tfrac{1}{2}$</text>
+        <text x="318" y="115">$\tfrac{3}{4}$</text>
+        <text x="25" y="135">$\pi$</text>
+        <text x="370" y="135">$\sqrt{2}$</text>
+      </g>
+    </svg>
+    <div class="illus-note">Quatre ensembles emboîtés. Chaque «&nbsp;couronne&nbsp;» contient des nombres typiques&nbsp;: $\mathbb{N}$ au cœur, puis les négatifs ajoutent $\mathbb{Z}$, puis les fractions ajoutent $\mathbb{Q}$, puis les irrationnels ajoutent $\mathbb{R}$.</div>
+  </div>
+
+  <h2>Exemples</h2>
+  <ul class="tight">
+    <li>$7 \in \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$.</li>
+    <li>$-3 \in \mathbb{Z}$ mais $-3 \notin \mathbb{N}$.</li>
+    <li>$\frac{1}{2} \in \mathbb{Q}$ mais $\frac{1}{2} \notin \mathbb{Z}$.</li>
+    <li>$\sqrt{2} \in \mathbb{R}$ mais $\sqrt{2} \notin \mathbb{Q}$ (irrationnel).</li>
+    <li>$\pi \in \mathbb{R}$ mais $\pi \notin \mathbb{Q}$ (irrationnel).</li>
+  </ul>
+
+  <h2>Pour s'entraîner</h2>
+  <ol>
+    <li>Pour chaque nombre, dis dans quels ensembles parmi $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$ il est&nbsp;: $5$, $-2$, $0$, $\frac{3}{4}$, $\pi$, $\sqrt{9}$.</li>
+    <li>Donne un exemple de nombre dans $\mathbb{R}$ mais pas dans $\mathbb{Q}$.</li>
+    <li>Vrai ou faux&nbsp;? &nbsp;(a)&nbsp;$\mathbb{N}^* \subset \mathbb{N}$ &nbsp;&nbsp; (b)&nbsp;$0 \in \mathbb{R}^+$ &nbsp;&nbsp; (c)&nbsp;$\mathbb{Z} \subset \mathbb{R}$.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Pour aller plus loin.</strong> &nbsp;Existe-t-il «&nbsp;plus&nbsp;» de réels que de rationnels&nbsp;? &rarr; voir l'exercice 9 (page suivante), puis la fiche 30.
+  </div>
+
+</div>
+
+<!-- =================== PAGE 2 =================== -->
+<div class="page">
+
+  <div class="banner-mini">
+    <span class="tag">FICHE 5 &middot; EXERCICES</span>
+    <span class="title">Ensembles de nombres</span>
+  </div>
+
+  <div class="diff" data-level="1">
+    <h3><span class="stars">★</span>Application directe</h3>
+    <ol>
+      <li>Pour chaque nombre, indique le <strong>plus petit</strong> des ensembles $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$ auquel il appartient.
+        <ol class="subexos">
+          <li>$7$</li>
+          <li>$-2$</li>
+          <li>$0$</li>
+          <li>$\frac{3}{4}$</li>
+          <li>$-\frac{1}{3}$</li>
+          <li>$\sqrt{4}$</li>
+          <li>$\sqrt{3}$</li>
+          <li>$\pi$</li>
+        </ol>
+      </li>
+      <li>Vrai ou faux&nbsp;?
+        <ol class="subexos">
+          <li>$5 \in \mathbb{N}$</li>
+          <li>$-3 \in \mathbb{N}$</li>
+          <li>$\frac{1}{2} \in \mathbb{Z}$</li>
+          <li>$0 \in \mathbb{N}^*$</li>
+          <li>$\pi \in \mathbb{Q}$</li>
+          <li>$\sqrt{2} \in \mathbb{R}$</li>
+          <li>$\mathbb{N} \subset \mathbb{R}$</li>
+          <li>$\mathbb{Q} = \mathbb{R}$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="2">
+    <h3><span class="stars">★★</span>Comprendre et traduire</h3>
+    <ol start="3">
+      <li>Justifie chaque inclusion <strong>stricte</strong> en exhibant un élément témoin.
+        <ol class="subexos">
+          <li>$\mathbb{N} \subsetneq \mathbb{Z}$&nbsp;: donne un élément de $\mathbb{Z}$ qui n'est pas dans $\mathbb{N}$.</li>
+          <li>$\mathbb{Z} \subsetneq \mathbb{Q}$&nbsp;: donne un élément de $\mathbb{Q}$ qui n'est pas dans $\mathbb{Z}$.</li>
+          <li>$\mathbb{Q} \subsetneq \mathbb{R}$&nbsp;: donne un élément de $\mathbb{R}$ qui n'est pas dans $\mathbb{Q}$.</li>
+        </ol>
+      </li>
+      <li>Donne <strong>trois fractions différentes</strong> qui désignent le même rationnel $\frac{3}{4}$.</li>
+      <li>Trois rationnels entre $\frac{1}{3}$ et $\frac{1}{2}$. Penses-tu qu'il y en ait une infinité&nbsp;? Justifie en une phrase.</li>
+      <li>Le domaine compte. Soit $S = \{x \mid x^2 = 2\}$. Donne $S$ si on cherche dans&nbsp;:
+        <ol class="subexos">
+          <li>$\mathbb{N}$</li>
+          <li>$\mathbb{Z}$</li>
+          <li>$\mathbb{Q}$</li>
+          <li>$\mathbb{R}$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="3">
+    <h3><span class="stars">★★★</span>Pousser plus loin</h3>
+    <ol start="7">
+      <li><strong>$\sqrt{2}$ n'est pas rationnel.</strong> Suppose par l'absurde que $\sqrt{2} = \frac{p}{q}$, fraction <strong>irréductible</strong> (pgcd($p$, $q$) = 1) avec $p \in \mathbb{N}^*, q \in \mathbb{N}^*$.
+        <ol class="subexos">
+          <li>Élève au carré&nbsp;: que vaut $p^2$ en fonction de $q$&nbsp;?</li>
+          <li>Déduis que $p^2$ est pair, donc $p$ est pair. Pose $p = 2k$ et substitue.</li>
+          <li>Déduis que $q^2$ est pair, donc $q$ est pair.</li>
+          <li>Quelle contradiction obtient-on avec «&nbsp;pgcd($p$, $q$) = 1&nbsp;»&nbsp;? Conclusion.</li>
+        </ol>
+      </li>
+      <li><strong>Décimal et rationnel.</strong> Tout rationnel s'écrit en décimal de manière soit finie ($\frac{1}{4} = 0{,}25$), soit infinie périodique ($\frac{1}{3} = 0{,}333\ldots$).
+        <ol class="subexos">
+          <li>Donne l'écriture décimale de $\frac{1}{8}$ et $\frac{1}{6}$.</li>
+          <li>Le nombre $0{,}121212\ldots$ (période $12$) est-il rationnel&nbsp;? Si oui, écris-le sous la forme $\frac{p}{q}$.</li>
+        </ol>
+      </li>
+      <li><strong>«&nbsp;Plus de&nbsp;» réels que de rationnels&nbsp;?</strong> On définit&nbsp;: «&nbsp;deux ensembles ont la même taille&nbsp;» s'il existe une <strong>bijection</strong> (correspondance un-à-un) entre eux.
+        <ol class="subexos">
+          <li>Existe-t-il une bijection entre $\mathbb{N}$ et $\mathbb{Z}$&nbsp;? Indication&nbsp;: ranger $0, -1, 1, -2, 2, -3, 3, \ldots$</li>
+          <li>Cantor a prouvé qu'il <strong>n'existe pas</strong> de bijection entre $\mathbb{N}$ et $\mathbb{R}$. On dit que $\mathbb{R}$ est <em>indénombrable</em>. &rarr; voir fiche F30.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>

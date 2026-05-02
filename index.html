@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galion 2.0 — Théorie des ensembles au collège</title>
+<script>
+  MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd6c5; font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.4; }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 24px 20px 48px 20px;
+  }
+
+  /* Banner — same style as the fiches */
+  header.banner {
+    background: #4b371e; color: white;
+    padding: 18px 24px;
+    border-radius: 4mm;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 24px;
+  }
+  header.banner .top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 11pt;
+  }
+  header.banner .tag { font-weight: 700; letter-spacing: 0.06em; }
+  header.banner .meta { opacity: 0.85; }
+  header.banner h1 {
+    margin: 6px 0 0 0;
+    font-size: 32pt; font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.5pt;
+  }
+  header.banner .subtitle {
+    margin: 8px 0 0 0; font-size: 12pt;
+    opacity: 0.92; font-weight: 400;
+    font-family: 'EB Garamond', Georgia, serif; font-style: italic;
+  }
+
+  h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18pt; color: #4b371e;
+    margin: 32px 0 8px 0;
+    border-bottom: 0.6pt solid #b08642;
+    padding-bottom: 3px; font-weight: 700;
+  }
+
+  p { margin: 8px 0; font-size: 13pt; }
+
+  .intro {
+    background: white;
+    border-left: 4px solid #b08642;
+    padding: 16px 22px;
+    border-radius: 0 3mm 3mm 0;
+    margin: 16px 0;
+    font-size: 13pt;
+  }
+  .intro p { margin: 6px 0; }
+
+  /* Fiche cards */
+  .fiches { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 12px; }
+  .fiche-card {
+    background: white;
+    border: 0.5pt solid #d4c89e;
+    border-radius: 3mm;
+    padding: 14px 18px;
+    transition: transform 0.12s, box-shadow 0.12s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .fiche-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+    border-color: #b08642;
+  }
+  .fiche-card .fiche-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #b08642;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .fiche-card .fiche-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 16pt;
+    color: #4b371e;
+    margin: 2px 0 6px 0;
+  }
+  .fiche-card .fiche-blurb {
+    font-size: 11.5pt; color: #555; margin: 0;
+  }
+
+  ul, ol { font-size: 13pt; }
+  ul li, ol li { margin: 4px 0; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .info-box {
+    background: #f3eedb;
+    border: 0.5pt solid #b08642;
+    border-radius: 2mm;
+    padding: 12px 16px;
+    font-size: 12pt;
+  }
+  .info-box strong { color: #4b371e; }
+  .info-box p { margin: 4px 0; font-size: 12pt; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 0.5pt solid #b08642;
+    color: #6c5a40;
+    font-size: 11pt;
+    font-style: italic;
+    text-align: center;
+  }
+  footer a { color: #4b371e; }
+
+  a { color: #4b371e; }
+  a:hover { color: #b08642; }
+
+  mjx-container { font-size: 1em !important; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="banner">
+    <div class="top">
+      <span class="tag">GALION 2.0</span>
+      <span class="meta">6<sup>e</sup>/5<sup>e</sup> &nbsp;·&nbsp; collège</span>
+    </div>
+    <h1>Théorie des ensembles</h1>
+    <p class="subtitle">Fiches d'apprentissage inspirées des fiches Galion (équipe lyonnaise, 1968)</p>
+  </header>
+
+  <section class="intro">
+    <p>Ce recueil propose une introduction structurée à la théorie naïve des ensembles à destination d'élèves de 6<sup>e</sup> et 5<sup>e</sup>. Chaque fiche tient sur deux pages A4&nbsp;: une page de vocabulaire et notations, illustrée et exemplifiée, suivie d'une page d'exercices triés en trois niveaux de difficulté <span style="color:#4b6e2c;">★</span> / <span style="color:#8a6800;">★★</span> / <span style="color:#8e2424;">★★★</span>.</p>
+    <p>L'esprit Galion&nbsp;: privilégier la <em>découverte par l'exemple</em>, la <em>manipulation directe des notations</em>, et le <em>tâtonnement</em>. L'élève cherche d'abord, lit le cours ensuite.</p>
+  </section>
+
+  <h2>Fiches disponibles</h2>
+  <div class="fiches">
+    <a href="fiche1-ensembles-appartenance.html" class="fiche-card">
+      <div class="fiche-num">Fiche 1</div>
+      <div class="fiche-title">Ensembles et appartenance</div>
+      <p class="fiche-blurb">Notion d'ensemble, élément, $\in$, $\notin$, ensemble vide $\emptyset$, cardinal $|E|$. Premières rencontres avec $\mathbb{N}$ et $\mathbb{Z}$.</p>
+    </a>
+    <a href="fiche2-decrire-un-ensemble.html" class="fiche-card">
+      <div class="fiche-num">Fiche 2</div>
+      <div class="fiche-title">Décrire un ensemble</div>
+      <p class="fiche-blurb">Compréhension restreinte $\{x \in E \mid P(x)\}$ avec domaine. Conditions composées (et / ou). « Bien défini » vs ambigu. Égalité par équivalence des propriétés.</p>
+    </a>
+    <a href="fiche3-inclusion.html" class="fiche-card">
+      <div class="fiche-num">Fiche 3</div>
+      <div class="fiche-title">Inclusion et sous-ensembles</div>
+      <p class="fiche-blurb">Inclusion $\subset$, distinction $\in$ contre $\subset$, réflexivité, transitivité, égalité par double inclusion. Premiers diagrammes patate.</p>
+    </a>
+    <a href="fiche4-parties-d-un-ensemble.html" class="fiche-card">
+      <div class="fiche-num">Fiche 4</div>
+      <div class="fiche-title">Parties d'un ensemble</div>
+      <p class="fiche-blurb">L'ensemble des parties $\mathcal{P}(E)$, lien avec $\subset$, cardinal $|\mathcal{P}(E)| = 2^{|E|}$. Diagramme de Hasse de $\mathcal{P}(\{a, b, c\})$.</p>
+    </a>
+    <a href="fiche5-ensembles-de-nombres.html" class="fiche-card">
+      <div class="fiche-num">Fiche 5</div>
+      <div class="fiche-title">Ensembles de nombres</div>
+      <p class="fiche-blurb">Chaîne d'inclusions $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$. Irrationnels, preuve guidée que $\sqrt{2} \notin \mathbb{Q}$. Teaser Cantor.</p>
+    </a>
+  </div>
+
+  <h2>Format</h2>
+  <div class="grid-2">
+    <div class="info-box">
+      <p><strong>Page 1</strong>&nbsp;: vocabulaire et notations (4 sous-blocs), illustration, exemples commentés, premiers exercices d'entraînement, encadré « Pour aller plus loin ».</p>
+    </div>
+    <div class="info-box">
+      <p><strong>Page 2</strong>&nbsp;: 9 exercices triés en trois bandes — <span style="color:#4b6e2c;">★ Application directe</span>, <span style="color:#8a6800;">★★ Comprendre et traduire</span>, <span style="color:#8e2424;">★★★ Pousser plus loin</span>.</p>
+    </div>
+  </div>
+  <p>Volume cible&nbsp;: ≈ 1 heure de travail effectif par fiche pour un bon élève.</p>
+
+  <h2>Plan complet (en cours)</h2>
+  <p>Le projet vise un curriculum de <strong>36 fiches</strong> regroupées en six blocs (ensembles, opérations, relations et équivalence, ordre, applications, et en bonus cardinaux et infini), entrecoupées d'<strong>une fiche de synthèse</strong> tous les cinq sujets.</p>
+  <p><a href="curriculum-galion-plan.md">→ Plan détaillé (Markdown)</a></p>
+
+  <h2>À propos</h2>
+  <p>Inspiré des fiches Galion (acronyme de «&nbsp;<em>gars de Lyon</em>&nbsp;»), équipe d'enseignants lyonnais fondée le 8 novembre 1968 sous l'impulsion de Maurice Glaymann. Les fichiers originaux étaient édités par OCDL et utilisés au collège pour accompagner les programmes de «&nbsp;maths modernes&nbsp;» (1969–1975).</p>
+  <p>Cette refonte vise les bons élèves curieux de 6<sup>e</sup>/5<sup>e</sup>. Elle assume une logique introduite <em>au fil de l'eau</em> et un usage léger de notations « lycée » ($\mathcal{P}, \subseteq, \subsetneq, \binom{n}{k}$) en bande 3★, à valeur de teaser.</p>
+
+  <footer>
+    <p>Galion 2.0 &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; <em>Licence à définir</em></p>
+  </footer>
+
+</div>
+
+</body>
+</html>

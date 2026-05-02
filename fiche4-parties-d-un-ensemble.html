@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 4 — Parties d'un ensemble</title>
+<script>
+  MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, chtml: { scale: 1.0 } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  @page { size: A4; margin: 0; }
+  @media print { html, body { background: white; } .page { box-shadow: none; margin: 0; } .page + .page { page-break-before: always; } }
+  html, body { margin: 0; padding: 0; background: #ddd6c5; font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; color: #1a1a1a; }
+  .page { width: 210mm; min-height: 297mm; padding: 16mm 16mm 12mm 16mm; margin: 12mm auto; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.18); box-sizing: border-box; font-size: 11.5pt; line-height: 1.30; }
+  .banner { background: #4b371e; color: white; padding: 8px 14px 10px 14px; border-radius: 3mm; font-family: 'Inter', sans-serif; }
+  .banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
+  .banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+  .banner .top .meta { opacity: 0.85; }
+  .banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+  .banner-mini { border-top: 3pt solid #4b371e; padding: 7pt 0 9pt 0; margin-bottom: 10pt; font-family: 'Inter', sans-serif; display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+  .banner-mini .tag { background: #4b371e; color: white; padding: 3pt 10pt; border-radius: 1mm; font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em; }
+  .banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
+  h2 { font-family: 'EB Garamond', Georgia, serif; font-size: 14pt; color: #4b371e; margin: 12pt 0 2pt 0; border-bottom: 0.4pt solid #b08642; padding-bottom: 1pt; font-weight: 700; }
+  p { margin: 4pt 0; }
+  ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
+  li { margin: 1pt 0; }
+  .tight li { margin: 0.5pt 0; }
+  ol li { padding-left: 4pt; margin: 4pt 0; }
+  ol.subexos { list-style: none; counter-reset: subexo; padding-left: 0; margin: 3pt 0 3pt 14pt; }
+  ol.subexos > li { counter-increment: subexo; margin: 1.5pt 0; padding-left: 22pt; position: relative; }
+  ol.subexos > li::before { content: counter(subexo, lower-alpha) ")"; position: absolute; left: 0; font-weight: 500; color: #6c5a40; width: 18pt; }
+  .diff[data-level="1"] ol.subexos { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18pt; row-gap: 1.5pt; }
+  .diff[data-level="1"] ol.subexos > li { margin: 0; }
+  .illus-block { border: 0.4pt solid #d4d4d4; border-radius: 1mm; padding: 6pt 8pt; background: white; text-align: center; margin: 6pt 0; }
+  .illus-block svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+  .illus-note { font-size: 10pt; color: #6c5a40; font-style: italic; margin-top: 4pt; }
+  .callout { background: #f3eedb; border: 0.5pt solid #b08642; border-radius: 1.5mm; padding: 6pt 10pt; margin-top: 10pt; font-size: 10.5pt; }
+  .callout strong { color: #4b371e; }
+  .diff { margin: 10pt 0 0 0; border-left: 3pt solid; padding: 4pt 0 4pt 10pt; }
+  .diff h3 { font-family: 'EB Garamond', Georgia, serif; font-size: 12.5pt; margin: 0 0 4pt 0; font-weight: 700; }
+  .diff[data-level="1"] { border-color: #6a9a4a; } .diff[data-level="1"] h3 { color: #4b6e2c; }
+  .diff[data-level="2"] { border-color: #c79900; } .diff[data-level="2"] h3 { color: #8a6800; }
+  .diff[data-level="3"] { border-color: #c33737; } .diff[data-level="3"] h3 { color: #8e2424; }
+  .diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
+  strong { color: #1a1a1a; } em { color: #4b371e; }
+  mjx-container { font-size: 1em !important; }
+</style>
+</head>
+<body>
+
+<!-- =================== PAGE 1 =================== -->
+<div class="page">
+
+  <div class="banner">
+    <div class="top">
+      <span class="tag">FICHE 4</span>
+      <span class="meta">Théorie des ensembles &nbsp;•&nbsp; 6<sup>e</sup>/5<sup>e</sup> &nbsp;•&nbsp; Galion 2.0</span>
+    </div>
+    <h1>Parties d'un ensemble</h1>
+  </div>
+
+  <h2>Vocabulaire et notations</h2>
+
+  <p><strong>Ensemble des parties.</strong> Soit $E$ un ensemble. L'ensemble formé de tous les sous-ensembles de $E$ s'appelle l'<strong>ensemble des parties</strong> de $E$ et se note $\mathcal{P}(E)$.</p>
+  <ul class="tight">
+    <li>$\mathcal{P}(E)$ est lui-même un ensemble, dont les éléments sont eux-mêmes des ensembles.</li>
+    <li>$A \in \mathcal{P}(E)$ <strong>si et seulement si</strong> $A \subset E$. Le symbole $\in$ relie $A$ à $\mathcal{P}(E)$, alors que $\subset$ relie $A$ à $E$&nbsp;: deux façons équivalentes de dire la même chose.</li>
+  </ul>
+
+  <p><strong>Cas particuliers.</strong> Pour tout ensemble $E$&nbsp;:</p>
+  <ul class="tight">
+    <li>$\emptyset \in \mathcal{P}(E)$&nbsp;: l'ensemble vide est toujours une partie, car on a toujours $\emptyset \subset E$.</li>
+    <li>$E \in \mathcal{P}(E)$&nbsp;: tout ensemble est une partie de lui-même, c'est-à-dire qu'on a toujours $E \subset E$.</li>
+  </ul>
+
+  <p><strong>Cardinal.</strong> Si $E$ a $n$ éléments, alors $\mathcal{P}(E)$ a $2^n$ éléments&nbsp;: $|\mathcal{P}(E)| = 2^{|E|}$.</p>
+  <ul class="tight">
+    <li>Idée&nbsp;: pour chaque élément de $E$, on a deux choix indépendants &mdash; il est dans le sous-ensemble, ou il n'y est pas.</li>
+  </ul>
+
+  <p><strong>Notation et lecture.</strong> $\mathcal{P}(E)$ se lit «&nbsp;P de E&nbsp;» ou «&nbsp;ensemble des parties de E&nbsp;».</p>
+
+  <h2>Illustration</h2>
+  <div class="illus-block">
+    <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#888" stroke-width="0.7" fill="none">
+        <line x1="250" y1="40" x2="140" y2="68"/>
+        <line x1="250" y1="40" x2="250" y2="68"/>
+        <line x1="250" y1="40" x2="360" y2="68"/>
+        <line x1="140" y1="92" x2="140" y2="118"/>
+        <line x1="140" y1="92" x2="250" y2="118"/>
+        <line x1="250" y1="92" x2="140" y2="118"/>
+        <line x1="250" y1="92" x2="360" y2="118"/>
+        <line x1="360" y1="92" x2="250" y2="118"/>
+        <line x1="360" y1="92" x2="360" y2="118"/>
+        <line x1="140" y1="142" x2="250" y2="170"/>
+        <line x1="250" y1="142" x2="250" y2="170"/>
+        <line x1="360" y1="142" x2="250" y2="170"/>
+      </g>
+      <g font-family="EB Garamond, Georgia, serif" font-size="14" text-anchor="middle" fill="#1a1a1a">
+        <text x="250" y="35">{a, b, c}</text>
+        <text x="140" y="85">{a, b}</text>
+        <text x="250" y="85">{a, c}</text>
+        <text x="360" y="85">{b, c}</text>
+        <text x="140" y="135">{a}</text>
+        <text x="250" y="135">{b}</text>
+        <text x="360" y="135">{c}</text>
+        <text x="250" y="183" font-size="16">∅</text>
+      </g>
+      <g font-family="Inter, sans-serif" font-size="9" fill="#6c5a40">
+        <text x="430" y="35" text-anchor="end">3 éléments &mdash; 1 cas</text>
+        <text x="465" y="85" text-anchor="end">2 éléments &mdash; 3 cas</text>
+        <text x="465" y="135" text-anchor="end">1 élément &mdash; 3 cas</text>
+        <text x="430" y="185" text-anchor="end">0 élément &mdash; 1 cas</text>
+      </g>
+    </svg>
+    <div class="illus-note">$\mathcal{P}(\{a, b, c\})$&nbsp;: les $2^3 = 8$ sous-ensembles, organisés par taille. Les traits relient un sous-ensemble à un sous-ensemble plus grand qui le contient.</div>
+  </div>
+
+  <h2>Exemples</h2>
+  <ul class="tight">
+    <li>$\mathcal{P}(\emptyset) = \{\,\emptyset\,\}$&nbsp;: 1 élément (= $2^0$).</li>
+    <li>$\mathcal{P}(\{a\}) = \{\,\emptyset,\ \{a\}\,\}$&nbsp;: 2 éléments (= $2^1$).</li>
+    <li>$\mathcal{P}(\{a, b\}) = \{\,\emptyset,\ \{a\},\ \{b\},\ \{a, b\}\,\}$&nbsp;: 4 éléments (= $2^2$).</li>
+    <li>$|\mathcal{P}(\{1, 2, 3, 4\})| = 2^4 = 16$.</li>
+  </ul>
+
+  <h2>Pour s'entraîner</h2>
+  <ol>
+    <li>Liste tous les éléments de $\mathcal{P}(\{1, 2\})$.</li>
+    <li>Combien d'éléments dans $\mathcal{P}(\{1, 2, 3, 4, 5\})$&nbsp;?</li>
+    <li>Vrai ou faux&nbsp;? &nbsp;(a)&nbsp;$\{1\} \in \mathcal{P}(\{1, 2\})$ &nbsp;&nbsp; (b)&nbsp;$1 \in \mathcal{P}(\{1, 2\})$.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Pour aller plus loin.</strong> &nbsp;Combien d'éléments dans $\mathcal{P}(\mathcal{P}(\{0\}))$&nbsp;? Et dans $\mathcal{P}(\mathcal{P}(\mathcal{P}(\{0\})))$&nbsp;? &rarr; voir l'exercice 6 (page suivante).
+  </div>
+
+</div>
+
+<!-- =================== PAGE 2 =================== -->
+<div class="page">
+
+  <div class="banner-mini">
+    <span class="tag">FICHE 4 &middot; EXERCICES</span>
+    <span class="title">Parties d'un ensemble</span>
+  </div>
+
+  <div class="diff" data-level="1">
+    <h3><span class="stars">★</span>Application directe</h3>
+    <ol>
+      <li>Donne $\mathcal{P}(E)$ en extension pour&nbsp;:
+        <ol class="subexos">
+          <li>$E = \emptyset$</li>
+          <li>$E = \{0\}$</li>
+          <li>$E = \{a, b\}$</li>
+          <li>$E = \{1, 2, 3\}$</li>
+        </ol>
+      </li>
+      <li>Soit $E = \{1, 2, 3\}$. Vrai ou faux&nbsp;?
+        <ol class="subexos">
+          <li>$\emptyset \in \mathcal{P}(E)$</li>
+          <li>$\emptyset \subset \mathcal{P}(E)$</li>
+          <li>$\{1\} \in \mathcal{P}(E)$</li>
+          <li>$\{1\} \subset \mathcal{P}(E)$</li>
+          <li>$\{\{1\}\} \in \mathcal{P}(E)$</li>
+          <li>$\{\{1\}\} \subset \mathcal{P}(E)$</li>
+          <li>$E \in \mathcal{P}(E)$</li>
+          <li>$\{E\} \subset \mathcal{P}(E)$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="2">
+    <h3><span class="stars">★★</span>Comprendre et traduire</h3>
+    <ol start="3">
+      <li><strong>Sous-ensembles avec contrainte.</strong> Soit $E = \{1, 2, 3, 4, 5\}$.
+        <ol class="subexos">
+          <li>Combien de sous-ensembles de $E$ contiennent l'élément $1$&nbsp;?</li>
+          <li>Combien <strong>ne</strong> contiennent <strong>pas</strong> $1$&nbsp;?</li>
+          <li>Vérifie que la somme vaut $|\mathcal{P}(E)|$. Pourquoi&nbsp;?</li>
+          <li>Combien de sous-ensembles de $E$ contiennent à la fois $1$ <strong>et</strong> $2$&nbsp;?</li>
+        </ol>
+      </li>
+      <li><strong>Sous-ensembles par taille.</strong> Soit $E = \{a, b, c, d\}$.
+        <ol class="subexos">
+          <li>Pour chaque $k \in \{0, 1, 2, 3, 4\}$, combien de sous-ensembles de $E$ ont exactement $k$ éléments&nbsp;? Liste les sous-ensembles à 2 éléments.</li>
+          <li>Vérifie que la somme vaut $|\mathcal{P}(E)| = 2^4 = 16$.</li>
+        </ol>
+      </li>
+      <li>Lien entre $\subset$ et $\in$. Pour chaque affirmation, vrai ou faux&nbsp;?
+        <ol class="subexos">
+          <li>Si $A \subset B$ alors $A \in \mathcal{P}(B)$.</li>
+          <li>Si $A \in \mathcal{P}(B)$ alors $A \subset B$.</li>
+          <li>$\{3\} \subset \{1, 2, 3\}$ équivaut à $\{3\} \in \mathcal{P}(\{1, 2, 3\})$.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="3">
+    <h3><span class="stars">★★★</span>Pousser plus loin</h3>
+    <ol start="6">
+      <li><strong>$\mathcal{P}$ de $\mathcal{P}$.</strong> Donne $\mathcal{P}(\mathcal{P}(\{0\}))$ en extension. Vérifie que tu obtiens $2^{2^1} = 4$ éléments. Combien d'éléments compte $\mathcal{P}(\mathcal{P}(\mathcal{P}(\{0\})))$&nbsp;?</li>
+      <li><strong>Pourquoi $2^n$&nbsp;?</strong> Imagine que $E = \{x_1, x_2, \ldots, x_n\}$. Pour décrire un sous-ensemble $A \subset E$, on indique pour chaque $x_i$ s'il est dans $A$ ou pas. Combien de choix au total&nbsp;? Conclus.</li>
+      <li><strong>Sous-ensembles à $k$ éléments.</strong> Combien y a-t-il de sous-ensembles à exactement 2 éléments dans un ensemble à 5 éléments&nbsp;? À 3 éléments dans un ensemble à 5&nbsp;? Et à $k$ éléments dans un ensemble à $n$ ($n$ et $k$ donnés)&nbsp;? On note ce nombre $\binom{n}{k}$ (lire «&nbsp;k parmi n&nbsp;»). Vérifie que $\sum_{k=0}^{n} \binom{n}{k} = 2^n$ pour $n = 4$.</li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>

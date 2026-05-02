@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 2 — Décrire un ensemble</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    chtml: { scale: 1.0 }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: white; }
+    .page { box-shadow: none; margin: 0; }
+    .page + .page { page-break-before: always; }
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    background: #ddd6c5;
+    font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    color: #1a1a1a;
+  }
+  .page {
+    width: 210mm; min-height: 297mm;
+    padding: 16mm 16mm 12mm 16mm;
+    margin: 12mm auto;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    box-sizing: border-box;
+    font-size: 11.5pt;
+    line-height: 1.30;
+  }
+
+  .banner {
+    background: #4b371e; color: white;
+    padding: 8px 14px 10px 14px; border-radius: 3mm;
+    font-family: 'Inter', sans-serif;
+  }
+  .banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
+  .banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+  .banner .top .meta { opacity: 0.85; }
+  .banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+
+  .banner-mini {
+    border-top: 3pt solid #4b371e;
+    padding: 7pt 0 9pt 0; margin-bottom: 10pt;
+    font-family: 'Inter', sans-serif;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10pt;
+  }
+  .banner-mini .tag { background: #4b371e; color: white; padding: 3pt 10pt; border-radius: 1mm; font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em; }
+  .banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
+
+  h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14pt; color: #4b371e;
+    margin: 12pt 0 2pt 0;
+    border-bottom: 0.4pt solid #b08642;
+    padding-bottom: 1pt; font-weight: 700;
+  }
+
+  p { margin: 4pt 0; }
+  ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
+  li { margin: 1pt 0; }
+  .tight li { margin: 0.5pt 0; }
+  ol li { padding-left: 4pt; margin: 4pt 0; }
+
+  ol.subexos {
+    list-style: none; counter-reset: subexo;
+    padding-left: 0; margin: 3pt 0 3pt 14pt;
+  }
+  ol.subexos > li {
+    counter-increment: subexo;
+    margin: 1.5pt 0; padding-left: 22pt; position: relative;
+  }
+  ol.subexos > li::before {
+    content: counter(subexo, lower-alpha) ")";
+    position: absolute; left: 0;
+    font-weight: 500; color: #6c5a40; width: 18pt;
+  }
+
+  .diff[data-level="1"] ol.subexos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 18pt; row-gap: 1.5pt;
+  }
+  .diff[data-level="1"] ol.subexos > li { margin: 0; }
+
+  /* Two-panel illustration row */
+  .illus-2panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12pt;
+    margin: 6pt 0;
+  }
+  .panel {
+    border: 0.4pt solid #d4d4d4;
+    border-radius: 1mm;
+    padding: 6pt 8pt;
+    background: white;
+  }
+  .panel-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt; font-weight: 600;
+    margin-bottom: 2pt;
+  }
+  .panel.ok .panel-tag { color: #4b6e2c; }
+  .panel.bad .panel-tag { color: #8e2424; }
+  .panel-formula { font-size: 11pt; margin-bottom: 4pt; }
+  .panel svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+  .panel-note { font-size: 9.5pt; color: #6c5a40; font-style: italic; margin-top: 3pt; }
+
+  .callout {
+    background: #f3eedb; border: 0.5pt solid #b08642;
+    border-radius: 1.5mm; padding: 6pt 10pt;
+    margin-top: 10pt; font-size: 10.5pt;
+  }
+  .callout strong { color: #4b371e; }
+
+  .diff { margin: 10pt 0 0 0; border-left: 3pt solid; padding: 4pt 0 4pt 10pt; }
+  .diff h3 { font-family: 'EB Garamond', Georgia, serif; font-size: 12.5pt; margin: 0 0 4pt 0; font-weight: 700; }
+  .diff[data-level="1"] { border-color: #6a9a4a; }
+  .diff[data-level="1"] h3 { color: #4b6e2c; }
+  .diff[data-level="2"] { border-color: #c79900; }
+  .diff[data-level="2"] h3 { color: #8a6800; }
+  .diff[data-level="3"] { border-color: #c33737; }
+  .diff[data-level="3"] h3 { color: #8e2424; }
+  .diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
+
+  strong { color: #1a1a1a; }
+  em { color: #4b371e; }
+
+  mjx-container { font-size: 1em !important; }
+</style>
+</head>
+
+<body>
+
+<!-- =================== PAGE 1 =================== -->
+<div class="page">
+
+  <div class="banner">
+    <div class="top">
+      <span class="tag">FICHE 2</span>
+      <span class="meta">Théorie des ensembles &nbsp;•&nbsp; 6<sup>e</sup>/5<sup>e</sup> &nbsp;•&nbsp; Galion 2.0</span>
+    </div>
+    <h1>Décrire un ensemble</h1>
+  </div>
+
+  <h2>Vocabulaire et notations</h2>
+
+  <p><strong>Domaine de référence.</strong> Quand on écrit $\{\,x \in E \mid P(x)\,\}$ où $P(x)$ est une propriété portant sur $x$, le «&nbsp;$\in E$&nbsp;» précise le <strong>domaine</strong> dans lequel on cherche. Sans domaine clair, l'ensemble peut être mal compris.</p>
+  <ul class="tight">
+    <li>Soit $A = \{n \in \mathbb{N} \mid n < 4\}$. Le domaine est $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$ et $A = \{0, 1, 2, 3\}$.</li>
+    <li>Soit $B = \{n \in \mathbb{Z} \mid n < 4\}$. Le domaine est $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$ et $B = \{\ldots, -2, -1, 0, 1, 2, 3\}$ est beaucoup plus grand que $A$&nbsp;!</li>
+  </ul>
+
+  <p><strong>Combiner des conditions.</strong> La propriété peut comporter plusieurs critères&nbsp;:</p>
+  <ul class="tight">
+    <li>$\{x \in E \mid P(x) \text{ et } Q(x)\}$&nbsp;: $x$ vérifie <strong>les deux</strong> propriétés $P$ et $Q$ (par exemple, $x$ est pair <strong>et</strong> $x > 10$).</li>
+    <li>$\{x \in E \mid P(x) \text{ ou } Q(x)\}$&nbsp;: $x$ vérifie <strong>au moins une</strong> des deux propriétés $P$ et $Q$ (<u><em>attention</em></u>&nbsp;: en maths, le «&nbsp;ou&nbsp;» est inclusif&nbsp;: «&nbsp;A ou B&nbsp;» est vrai lorsque A est vrai et B est vrai).</li>
+  </ul>
+
+  <p><strong>Bien défini.</strong> Pour qu'une description désigne vraiment un ensemble, le critère doit être <strong>sans ambiguïté</strong>&nbsp;: on doit pouvoir dire, pour chaque élément, si oui ou non il vérifie la propriété.</p>
+  <ul class="tight">
+    <li><span style="color:#4b6e2c;">✓</span> «&nbsp;$n$ est divisible par 3&nbsp;»&nbsp;: un entier l'est ou ne l'est pas, sans débat.</li>
+    <li><span style="color:#c33737;">✗</span> «&nbsp;$x$ est grand&nbsp;»&nbsp;: «&nbsp;grand&nbsp;» dépend du juge.</li>
+  </ul>
+
+  <p><strong>Égalité par équivalence.</strong> Deux descriptions désignent <strong>le même ensemble</strong> si leurs propriétés sont vraies pour exactement les mêmes éléments. Pour montrer $\{x \in E \mid P(x)\} = \{x \in E \mid Q(x)\}$, on prouve que pour tout $x \in E$, $P(x)$ équivaut à $Q(x)$.</p>
+
+  <h2>Exemples</h2>
+  <ul class="tight">
+    <li>«&nbsp;$2 \leqslant n \leqslant 5$&nbsp;» est un raccourci (une facilité d'écriture) pour «&nbsp;$2 \leqslant n \text{ et } n \leqslant 5$&nbsp;».</li>
+    <li>$\{m \in \mathbb{N} \mid m \text{ pair}\} = \{0, 2, 4, 6, \ldots\}$ est un exemple d'ensemble <strong>infini</strong>.</li>
+    <li>$\{a \in \mathbb{N} \mid a \text{ pair et } a \leqslant 6\} = \{0, 2, 4, 6\}$.</li>
+    <li>$\{b \in \mathbb{Z} \mid b^2 \leqslant 4\} = \{-2, -1, 0, 1, 2\}$.</li>
+    <li>$\{n \in \mathbb{N} \mid n \text{ pair et } n \text{ multiple de 3}\} = \{n \in \mathbb{N} \mid n \text{ multiple de 6}\}$ sont deux descriptions équivalentes du même ensemble.</li>
+    <li>Soit $P(k)$ la propriété «&nbsp;$k^2 \leqslant 10$&nbsp;» et $Q(m) : -3 \leqslant m \leqslant 3$. Alors $\{k \in \mathbb{Z} \mid P(k)\} = \{-3, -2, -1, 0, 1, 2, 3\} = \{m \in \mathbb{Z} \mid Q(m)\}$. Note que le choix des lettres $k$ et $m$ n'a pas d'importance&nbsp;: ce sont des <strong>variables muettes</strong>.</li>
+  </ul>
+
+  <h2>Pour s'entraîner</h2>
+  <ol>
+    <li>Donne en extension&nbsp;: $\{n \in \mathbb{N} \mid n \text{ pair et } n < 12\}$.</li>
+    <li>Cet ensemble est-il bien défini&nbsp;?  $\{x \in \mathbb{N} \mid x \text{ est un grand nombre}\}$. Justifie.</li>
+    <li>Vrai ou faux&nbsp;? &nbsp;$\{n \in \mathbb{N} \mid n \neq 0\} = \{n \in \mathbb{N} \mid n \geqslant 1\}$.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Pour aller plus loin.</strong> &nbsp;Que vaut $\{n \in \mathbb{N} \mid n^2 < 0\}$&nbsp;? Et $\{x \in \mathbb{R} \mid x^2 + 1 = 0\}$&nbsp;? &rarr; voir l'exercice 8 (page suivante).
+  </div>
+
+</div>
+
+<!-- =================== PAGE 2 =================== -->
+<div class="page">
+
+  <div class="banner-mini">
+    <span class="tag">FICHE 2 &middot; EXERCICES</span>
+    <span class="title">Décrire un ensemble</span>
+  </div>
+
+  <div class="diff" data-level="1">
+    <h3><span class="stars">★</span>Application directe</h3>
+    <ol>
+      <li>Donne en extension&nbsp;:
+        <ol class="subexos">
+          <li>$\{n \in \mathbb{N} \mid n \leqslant 4\}$</li>
+          <li>$\{n \in \mathbb{N} \mid n \text{ pair et } 0 < n < 10\}$</li>
+          <li>$\{n \in \mathbb{Z} \mid -2 \leqslant n \leqslant 2\}$</li>
+          <li>$\{n \in \mathbb{N} \mid n = 1 \text{ ou } n = 4 \text{ ou } n = 9\}$</li>
+        </ol>
+      </li>
+      <li>Les ensembles ci-dessous sont-ils bien définis ou non&nbsp;? Justifie en une phrase.
+        <ol class="subexos">
+          <li>$\{x \in \mathbb{N} \mid x \text{ est multiple de 7}\}$</li>
+          <li>$\{x \in \mathbb{N} \mid x \text{ est petit}\}$</li>
+          <li>$\{x \in \mathbb{N} \mid x \text{ est intéressant}\}$</li>
+          <li>$\{x \in \text{humains} \mid x \text{ est né en l'an 2000}\}$</li>
+          <li>$\{x \in \mathbb{R} \mid x = \pi\}$</li>
+          <li>$\{x \in \text{humains} \mid x \text{ mesure plus de 1{,}70 m}\}$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="2">
+    <h3><span class="stars">★★</span>Comprendre et traduire</h3>
+    <ol start="3">
+      <li>Décris en compréhension restreinte (avec un domaine $E$ explicite)&nbsp;:
+        <ol class="subexos">
+          <li>Les multiples de 5 strictement positifs et inférieurs à 50.</li>
+          <li>Les nombres impairs entre 10 et 30.</li>
+          <li>Les solutions de $x^2 = 9$ dans $\mathbb{Z}$.</li>
+          <li>Les nombres premiers strictement plus petits que 20.</li>
+        </ol>
+      </li>
+      <li>Le domaine compte. Pour chaque cas, donne en extension les deux ensembles et conclus s'ils sont égaux.
+        <ol class="subexos">
+          <li>$A = \{x \in \mathbb{N} \mid x^2 = 4\}$ et $B = \{x \in \mathbb{Z} \mid x^2 = 4\}$.</li>
+          <li>$A = \{x \in \mathbb{N} \mid 0 \leqslant x < 3\}$ et $B = \{x \in \mathbb{Z} \mid 0 \leqslant x < 3\}$.</li>
+        </ol>
+      </li>
+      <li>Reformuler la propriété sans changer l'ensemble. Pour chaque ensemble, donne <strong>deux écritures différentes</strong> en compréhension (deux propriétés équivalentes)&nbsp;:
+        <ol class="subexos">
+          <li>$\{0, 2, 4, 6, 8\}$ dans $\mathbb{N}$.</li>
+          <li>$\{1, 4, 9, 16, 25\}$ dans $\mathbb{N}$.</li>
+        </ol>
+      </li>
+      <li>Le mot «&nbsp;ou&nbsp;».
+        <ol class="subexos">
+          <li>Donne en extension&nbsp;: $\{n \in \mathbb{N} \mid n = 0 \text{ ou } n \text{ pair}\}$.</li>
+          <li>Un même $n$ peut-il satisfaire les deux conditions à la fois (être 0 ET être pair)&nbsp;? Si oui, lequel&nbsp;?</li>
+          <li>En français courant, «&nbsp;fromage ou dessert&nbsp;» est exclusif. Conclus sur le sens du «&nbsp;ou&nbsp;» en math.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="3">
+    <h3><span class="stars">★★★</span>Pousser plus loin</h3>
+    <ol start="7">
+      <li><strong>Égalité par équivalence.</strong> Montre que $\{n \in \mathbb{N} \mid n \text{ pair et } n \text{ multiple de 3}\} = \{n \in \mathbb{N} \mid n \text{ multiple de 6}\}$.<br>Indice&nbsp;: prends un $n$ du membre de gauche et montre qu'il est dans celui de droite, puis l'inverse.</li>
+      <li><strong>Trois écritures de l'ensemble vide.</strong> Donne <strong>trois descriptions différentes</strong> de $\emptyset$ en compréhension restreinte (chacune avec un domaine bien choisi).</li>
+      <li><strong>Bien défini ou pas&nbsp;?</strong> Pour chaque description, dis si elle est bien définie&nbsp;; si oui, donne en extension (ou explique pourquoi infinie)&nbsp;; si non, identifie l'ambiguïté.
+        <ol class="subexos">
+          <li>$\{n \in \mathbb{N} \mid n \text{ se termine par 7 dans son écriture décimale}\}$</li>
+          <li>$\{x \in \mathbb{R} \mid x \text{ est proche de 0}\}$</li>
+          <li>$\{n \in \mathbb{N} \mid n \text{ est solitaire}\}$</li>
+          <li>$\{x \in \mathbb{R} \mid x \text{ est rationnel}\}$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>

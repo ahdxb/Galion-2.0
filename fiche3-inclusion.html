@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 3 — Inclusion et sous-ensembles</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    chtml: { scale: 1.0 }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: white; }
+    .page { box-shadow: none; margin: 0; }
+    .page + .page { page-break-before: always; }
+  }
+  html, body { margin: 0; padding: 0; background: #ddd6c5; font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; color: #1a1a1a; }
+  .page { width: 210mm; min-height: 297mm; padding: 16mm 16mm 12mm 16mm; margin: 12mm auto; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.18); box-sizing: border-box; font-size: 11.5pt; line-height: 1.30; }
+
+  .banner { background: #4b371e; color: white; padding: 8px 14px 10px 14px; border-radius: 3mm; font-family: 'Inter', sans-serif; }
+  .banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
+  .banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+  .banner .top .meta { opacity: 0.85; }
+  .banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+
+  .banner-mini { border-top: 3pt solid #4b371e; padding: 7pt 0 9pt 0; margin-bottom: 10pt; font-family: 'Inter', sans-serif; display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+  .banner-mini .tag { background: #4b371e; color: white; padding: 3pt 10pt; border-radius: 1mm; font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em; }
+  .banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
+
+  h2 { font-family: 'EB Garamond', Georgia, serif; font-size: 14pt; color: #4b371e; margin: 12pt 0 2pt 0; border-bottom: 0.4pt solid #b08642; padding-bottom: 1pt; font-weight: 700; }
+
+  p { margin: 4pt 0; }
+  ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
+  li { margin: 1pt 0; }
+  .tight li { margin: 0.5pt 0; }
+  ol li { padding-left: 4pt; margin: 4pt 0; }
+
+  ol.subexos { list-style: none; counter-reset: subexo; padding-left: 0; margin: 3pt 0 3pt 14pt; }
+  ol.subexos > li { counter-increment: subexo; margin: 1.5pt 0; padding-left: 22pt; position: relative; }
+  ol.subexos > li::before { content: counter(subexo, lower-alpha) ")"; position: absolute; left: 0; font-weight: 500; color: #6c5a40; width: 18pt; }
+
+  .diff[data-level="1"] ol.subexos { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18pt; row-gap: 1.5pt; }
+  .diff[data-level="1"] ol.subexos > li { margin: 0; }
+
+  /* 3-panel illustration */
+  .illus-3panel { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8pt; margin: 6pt 0; }
+  .panel { border: 0.4pt solid #d4d4d4; border-radius: 1mm; padding: 5pt 6pt; background: white; }
+  .panel-tag { font-family: 'Inter', sans-serif; font-size: 10pt; font-weight: 600; margin-bottom: 2pt; color: #4b371e; text-align: center; }
+  .panel svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+  .panel-note { font-size: 9.5pt; color: #6c5a40; font-style: italic; margin-top: 3pt; text-align: center; }
+
+  .callout { background: #f3eedb; border: 0.5pt solid #b08642; border-radius: 1.5mm; padding: 6pt 10pt; margin-top: 10pt; font-size: 10.5pt; }
+  .callout strong { color: #4b371e; }
+
+  .diff { margin: 10pt 0 0 0; border-left: 3pt solid; padding: 4pt 0 4pt 10pt; }
+  .diff h3 { font-family: 'EB Garamond', Georgia, serif; font-size: 12.5pt; margin: 0 0 4pt 0; font-weight: 700; }
+  .diff[data-level="1"] { border-color: #6a9a4a; }
+  .diff[data-level="1"] h3 { color: #4b6e2c; }
+  .diff[data-level="2"] { border-color: #c79900; }
+  .diff[data-level="2"] h3 { color: #8a6800; }
+  .diff[data-level="3"] { border-color: #c33737; }
+  .diff[data-level="3"] h3 { color: #8e2424; }
+  .diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
+
+  strong { color: #1a1a1a; }
+  em { color: #4b371e; }
+
+  mjx-container { font-size: 1em !important; }
+</style>
+</head>
+<body>
+
+<!-- =================== PAGE 1 =================== -->
+<div class="page">
+
+  <div class="banner">
+    <div class="top">
+      <span class="tag">FICHE 3</span>
+      <span class="meta">Théorie des ensembles &nbsp;•&nbsp; 6<sup>e</sup>/5<sup>e</sup> &nbsp;•&nbsp; Galion 2.0</span>
+    </div>
+    <h1>Inclusion et sous-ensembles</h1>
+  </div>
+
+  <h2>Vocabulaire et notations</h2>
+
+  <p><strong>Inclusion.</strong> Soient $A$ et $B$ deux ensembles. On dit que $A$ est <strong>inclus</strong> dans $B$, et on note $A \subset B$, lorsque chaque élément de $A$ est aussi un élément de $B$. On dit aussi que $A$ est une <strong>partie</strong> de $B$, ou un <strong>sous-ensemble</strong> de $B$.</p>
+  <ul class="tight">
+    <li>Autrement dit&nbsp;: $A \subset B$ signifie que pour tout $x$, si $x \in A$ alors $x \in B$.</li>
+    <li>Si $A$ n'est pas inclus dans $B$, on écrit $A \not\subset B$.</li>
+    <li>On note parfois $A \subseteq B$ à la place de $A \subset B$ pour insister sur le fait que $A$ peut être égal à $B$.</li>
+  </ul>
+
+  <p><strong>Différence entre $\in$ et $\subset$.</strong> Attention à ne pas confondre les deux symboles&nbsp;:</p>
+  <ul class="tight">
+    <li>$\in$ relie un <strong>élément</strong> à un <strong>ensemble</strong>&nbsp;: $1 \in \{1, 2, 3\}$.</li>
+    <li>$\subset$ relie deux <strong>ensembles</strong>&nbsp;: $\{1, 2\} \subset \{1, 2, 3\}$.</li>
+    <li>$1 \in \{1, 2, 3\}$ est vrai, mais $1 \subset \{1, 2, 3\}$ n'a pas de sens (car $1$ n'est pas un ensemble).</li>
+  </ul>
+
+  <p><strong>Propriétés.</strong> Pour tous ensembles $A, B, C$&nbsp;:</p>
+  <ul class="tight">
+    <li>$\emptyset \subset A$&nbsp;: l'ensemble vide est inclus dans n'importe quel ensemble.</li>
+    <li>$A \subset A$&nbsp;: tout ensemble est inclus dans lui-même (<em>réflexivité</em>).</li>
+    <li>Si $A \subset B$ et $B \subset C$, alors $A \subset C$ (<em>transitivité</em>).</li>
+  </ul>
+
+  <p><strong>Égalité par double inclusion.</strong> Deux ensembles $A$ et $B$ sont égaux si, et seulement si, $A \subset B$ <strong>et</strong> $B \subset A$. Pour montrer $A = B$, on prouve donc séparément les deux inclusions.</p>
+  <ul class="tight">
+    <li>$A = B \iff (A \subset B \text{ et } B \subset A)$.</li>
+  </ul>
+
+  <h2>Illustration</h2>
+  <div class="illus-3panel">
+    <div class="panel">
+      <div class="panel-tag">$B \subset A$</div>
+      <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="55" rx="80" ry="40" fill="#fcf3df" fill-opacity="0.5" stroke="#4b371e" stroke-width="1.4"/>
+        <ellipse cx="125" cy="62" rx="40" ry="22" fill="#cfe1f2" fill-opacity="0.6" stroke="#4b371e" stroke-width="1.2"/>
+        <text x="48" y="38" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="16" fill="#4b371e">A</text>
+        <text x="120" y="66" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#4b371e">B</text>
+      </svg>
+      <div class="panel-note">Tout élément de $B$ est dans $A$.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-tag">$B \not\subset A$</div>
+      <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="55" cy="55" rx="40" ry="30" fill="#fcf3df" fill-opacity="0.5" stroke="#4b371e" stroke-width="1.4"/>
+        <ellipse cx="145" cy="55" rx="40" ry="30" fill="#cfe1f2" fill-opacity="0.6" stroke="#4b371e" stroke-width="1.4"/>
+        <text x="50" y="59" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#4b371e">A</text>
+        <text x="140" y="59" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#4b371e">B</text>
+      </svg>
+      <div class="panel-note">$A$ et $B$ n'ont aucun élément en commun. On dit que $A$ et $B$ sont <strong>disjoints</strong>.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-tag">$B \not\subset A$</div>
+      <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="78" cy="55" rx="50" ry="32" fill="#fcf3df" fill-opacity="0.5" stroke="#4b371e" stroke-width="1.4"/>
+        <ellipse cx="128" cy="55" rx="50" ry="32" fill="#cfe1f2" fill-opacity="0.45" stroke="#4b371e" stroke-width="1.4"/>
+        <text x="40" y="59" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#4b371e">A</text>
+        <text x="155" y="59" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#4b371e">B</text>
+      </svg>
+      <div class="panel-note">Certains éléments de $B$ sont dans $A$, mais pas tous&nbsp;!</div>
+    </div>
+  </div>
+
+  <h2>Exemples</h2>
+  <ul class="tight">
+    <li>$\{1, 2\} \subset \{1, 2, 3\}$&nbsp; car $1 \in \{1, 2, 3\}$ et $2 \in \{1, 2, 3\}$.</li>
+    <li>$\mathbb{N} \subset \mathbb{Z}$&nbsp;: chaque entier naturel est un entier relatif.</li>
+    <li>$\{n \in \mathbb{N} \mid n \text{ multiple de 6}\} \subset \{n \in \mathbb{N} \mid n \text{ pair}\}$.</li>
+    <li>L'ensemble des carrés est inclus dans l'ensemble des rectangles (un carré est un rectangle particulier).</li>
+    <li>$\{1, 2\} \in \{\,\{1, 2\}, \{3, 4\}\,\}$ mais $\{1, 2\} \not\subset \{\,\{1, 2\}, \{3, 4\}\,\}$&nbsp;: le membre de droite a deux éléments ($\{1, 2\}$ et $\{3, 4\}$), pas $1$ ni $2$.</li>
+  </ul>
+
+  <h2>Pour s'entraîner</h2>
+  <ol>
+    <li>Vrai ou faux&nbsp;? &nbsp;(a)&nbsp;$\{1\} \subset \{1, 2, 3\}$ &nbsp;&nbsp; (b)&nbsp;$1 \subset \{1, 2, 3\}$ &nbsp;&nbsp; (c)&nbsp;$\emptyset \subset \{1, 2\}$.</li>
+    <li>Soient $A = \{n \in \mathbb{N} \mid n \text{ multiple de 4}\}$ et $B = \{n \in \mathbb{N} \mid n \text{ pair}\}$. Justifie que $A \subset B$.</li>
+    <li>Donne deux ensembles infinis $A$ et $B$ avec $A \subset B$ et $A \neq B$ (ce qu'on note parfois $A \subsetneq B$).</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Pour aller plus loin.</strong> &nbsp;Combien y a-t-il de sous-ensembles dans un ensemble à $n$ éléments&nbsp;? &rarr; voir l'exercice 8 (page suivante), puis la fiche 4.
+  </div>
+
+</div>
+
+<!-- =================== PAGE 2 =================== -->
+<div class="page">
+
+  <div class="banner-mini">
+    <span class="tag">FICHE 3 &middot; EXERCICES</span>
+    <span class="title">Inclusion et sous-ensembles</span>
+  </div>
+
+  <div class="diff" data-level="1">
+    <h3><span class="stars">★</span>Application directe</h3>
+    <ol>
+      <li>Pour chaque paire $(A, B)$, dis si $A \subset B$, $B \subset A$, les deux (donc $A = B$), ou aucun des deux.
+        <ol class="subexos">
+          <li>$A = \{1, 2\}$, $B = \{1, 2, 3\}$</li>
+          <li>$A = \{1, 2, 3\}$, $B = \{3, 2, 1\}$</li>
+          <li>$A = \{1, \{2\}\}$, $B = \{1, 2\}$</li>
+          <li>$A = \emptyset$, $B = \emptyset$</li>
+          <li>$A = \{1\}$, $B = \{\{1\}\}$</li>
+          <li>$A = \mathbb{N}$, $B = \mathbb{Z}$</li>
+        </ol>
+      </li>
+      <li>Choisis le bon symbole entre $\in$ et $\subset$ pour rendre l'affirmation vraie (parfois les deux conviennent).
+        <ol class="subexos">
+          <li>$1 \;?\; \{1, 2\}$</li>
+          <li>$\{1\} \;?\; \{1, 2\}$</li>
+          <li>$\emptyset \;?\; \{1, 2\}$</li>
+          <li>$\emptyset \;?\; \{\emptyset\}$</li>
+          <li>$\{1, 2\} \;?\; \{\{1, 2\}\}$</li>
+          <li>$\{1, 2\} \;?\; \{1, 2, 3\}$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="2">
+    <h3><span class="stars">★★</span>Comprendre et traduire</h3>
+    <ol start="3">
+      <li>Démontre l'inclusion $\{n \in \mathbb{N} \mid n \text{ multiple de 6}\} \subset \{n \in \mathbb{N} \mid n \text{ multiple de 3}\}$ en partant d'un élément quelconque du membre de gauche.</li>
+      <li>Inclusion ou pas&nbsp;? Justifie chaque réponse en une phrase.
+        <ol class="subexos">
+          <li>Triangles équilatéraux $\subset$ Triangles isocèles&nbsp;?</li>
+          <li>Carrés $\subset$ Rectangles&nbsp;?</li>
+          <li>Nombres premiers $\subset$ Nombres impairs&nbsp;?</li>
+          <li>$\mathbb{N} \subset \mathbb{Z}$&nbsp;?</li>
+        </ol>
+      </li>
+      <li>Soit $A = \{1, 2, 3\}$. Liste tous les sous-ensembles de $A$. Combien y en a-t-il&nbsp;?</li>
+      <li>Quelqu'un affirme&nbsp;: «&nbsp;$1 \in \{1\}$ et $\{1\} \subset \{1\}$, donc $1 \subset \{1\}$.&nbsp;» Où est l'erreur&nbsp;?</li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="3">
+    <h3><span class="stars">★★★</span>Pousser plus loin</h3>
+    <ol start="7">
+      <li><strong>Inclusion et cardinaux.</strong> Soient $A$ et $B$ deux ensembles finis. Utilise ton intuition pour répondre aux questions suivantes&nbsp;:
+        <ol class="subexos">
+          <li>Si $A \subset B$, que penses-tu de $|A|$ et $|B|$&nbsp;? Est-ce que la réciproque est vraie&nbsp;?</li>
+          <li>Et si $A \subsetneq B$&nbsp;?</li>
+          <li>Si $A \subset B$ et $|A| = |B|$, que penses-tu de $A$ et $B$&nbsp;?</li>
+        </ol>
+      </li>
+      <li><strong>Compter les sous-ensembles.</strong> Soit $A_n = \{1, \ldots, n\}$ un ensemble fini de cardinal $n$. On note $s_n$ le nombre de sous-ensembles de $A_n$&nbsp;; autrement dit, $s_n = |\mathcal{P}_n|$ où $\mathcal{P}_n = \{x \mid x \subset A_n\}$.
+        <ol class="subexos">
+          <li>Décris en extension $A_1$, $A_2$, $A_3$.</li>
+          <li>Calcule $s_0$, $s_1$, $s_2$, $s_3$.</li>
+          <li>Conjecture une formule pour $s_n$.</li>
+          <li>(Bonus) Explique pourquoi cette formule est vraie. Indice&nbsp;: pour chaque élément, on a deux choix.</li>
+        </ol>
+      </li>
+      <li><strong>Inclusion stricte.</strong> On note $A \subsetneq B$ pour signifier $A \subset B$ <strong>et</strong> $A \neq B$.
+        <ol class="subexos">
+          <li>Donne un exemple de $A$ et $B$ tels que $A \subsetneq B$.</li>
+          <li>Vrai ou faux&nbsp;? « Si $A \subsetneq B$ et $B \subsetneq C$ alors $A \subsetneq C$. » Justifie ou donne un contre-exemple.</li>
+          <li>Existe-t-il un ensemble $A$ tel que $A \subsetneq A$&nbsp;? Justifie.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 1 — Ensembles et appartenance</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    chtml: { scale: 1.0 }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Print: real A4 ---------- */
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: white; }
+    .page { box-shadow: none; margin: 0; }
+    .page + .page { page-break-before: always; }
+  }
+
+  /* ---------- Screen: simulated A4 ---------- */
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ddd6c5;
+    font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    color: #1a1a1a;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 16mm 16mm 12mm 16mm;
+    margin: 12mm auto;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    box-sizing: border-box;
+    font-size: 11.5pt;
+    line-height: 1.30;
+  }
+
+  /* ---------- Header banner (page 1) ---------- */
+  .banner {
+    background: #4b371e; color: white;
+    padding: 8px 14px 10px 14px; border-radius: 3mm;
+    font-family: 'Inter', 'Helvetica', sans-serif;
+  }
+  .banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
+  .banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+  .banner .top .meta { opacity: 0.85; }
+  .banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+
+  /* ---------- Mini banner (page 2) ---------- */
+  .banner-mini {
+    border-top: 3pt solid #4b371e;
+    padding: 7pt 0 9pt 0;
+    margin-bottom: 10pt;
+    font-family: 'Inter', 'Helvetica', sans-serif;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 10pt;
+  }
+  .banner-mini .tag {
+    background: #4b371e; color: white;
+    padding: 3pt 10pt; border-radius: 1mm;
+    font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em;
+  }
+  .banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
+  .banner-mini .meta { color: #6c5a40; font-size: 10.5pt; }
+
+  /* Two-column sub-questions inside the 1★ band — CSS grid for deterministic order */
+  .diff[data-level="1"] ol.subexos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 18pt;
+    row-gap: 1.5pt;
+  }
+  .diff[data-level="1"] ol.subexos > li { margin: 0; }
+
+  /* ---------- Sections ---------- */
+  h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14pt; color: #4b371e;
+    margin: 12pt 0 2pt 0;
+    border-bottom: 0.4pt solid #b08642;
+    padding-bottom: 1pt; font-weight: 700;
+  }
+
+  p { margin: 4pt 0; }
+  ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
+  li { margin: 1pt 0; }
+  .tight li { margin: 0.5pt 0; }
+  ol li { padding-left: 4pt; margin: 4pt 0; }
+
+  strong { color: #1a1a1a; }
+  em { color: #4b371e; }
+
+  /* Lettered sub-question lists (a, b, c…) — perfectly aligned */
+  ol.subexos {
+    list-style: none;
+    counter-reset: subexo;
+    padding-left: 0;
+    margin: 3pt 0 3pt 14pt;
+  }
+  ol.subexos > li {
+    counter-increment: subexo;
+    margin: 1.5pt 0;
+    padding-left: 22pt;
+    position: relative;
+  }
+  ol.subexos > li::before {
+    content: counter(subexo, lower-alpha) ")";
+    position: absolute;
+    left: 0;
+    font-weight: 500;
+    color: #6c5a40;
+    width: 18pt;
+  }
+
+  /* ---------- Illustration row ---------- */
+  .illus { display: flex; align-items: center; gap: 12pt; margin: 6pt 0; }
+  .illus .svg-box { flex: 0 0 56%; text-align: center; }
+  .illus .svg-box svg { max-width: 100%; height: auto; border: 0.4pt solid #d4d4d4; border-radius: 1mm; }
+  .illus .legend { flex: 1; font-size: 10.5pt; }
+  .illus .legend p { margin: 3pt 0; }
+
+  /* ---------- "Pour aller plus loin" callout ---------- */
+  .callout {
+    background: #f3eedb; border: 0.5pt solid #b08642;
+    border-radius: 1.5mm; padding: 6pt 10pt;
+    margin-top: 10pt; font-size: 10.5pt;
+  }
+  .callout strong { color: #4b371e; }
+
+  /* ---------- Difficulty bands (page 2) ---------- */
+  .diff {
+    margin: 10pt 0 0 0;
+    border-left: 3pt solid;
+    padding: 4pt 0 4pt 10pt;
+  }
+  .diff h3 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 12.5pt;
+    margin: 0 0 4pt 0;
+    font-weight: 700;
+  }
+  .diff[data-level="1"] { border-color: #6a9a4a; }
+  .diff[data-level="1"] h3 { color: #4b6e2c; }
+  .diff[data-level="2"] { border-color: #c79900; }
+  .diff[data-level="2"] h3 { color: #8a6800; }
+  .diff[data-level="3"] { border-color: #c33737; }
+  .diff[data-level="3"] h3 { color: #8e2424; }
+  .diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
+
+  mjx-container { font-size: 1em !important; }
+</style>
+</head>
+
+<body>
+
+<!-- =================== PAGE 1 — Cours =================== -->
+<div class="page">
+
+  <div class="banner">
+    <div class="top">
+      <span class="tag">FICHE 1</span>
+      <span class="meta">Théorie des ensembles &nbsp;•&nbsp; 6<sup>e</sup>/5<sup>e</sup> &nbsp;•&nbsp; Galion 2.0</span>
+    </div>
+    <h1>Ensembles et appartenance</h1>
+  </div>
+
+  <h2>Vocabulaire et notations</h2>
+  <p>Un <strong>ensemble</strong> est une collection d'objets, appelés ses <strong>éléments</strong>. Il est entièrement déterminé par sa liste d'éléments&nbsp;: ni l'ordre, ni les répétitions ne comptent.</p>
+  <ul class="tight">
+    <li>Ainsi $\{1, 2, 3\}$, $\{3, 2, 1\}$ et $\{1, 1, 2, 3\}$ désignent <strong>le même ensemble</strong>.</li>
+  </ul>
+
+  <p>Un ensemble peut se décrire de deux façons&nbsp;:</p>
+  <ul class="tight">
+    <li><strong>en extension</strong> &mdash; on liste tous les éléments entre accolades&nbsp;: $\{1, 3, 5, 7, 9\}$, ou $\{🍎, 🍌, 🥕\}$.<br>Quand le motif est clair, on peut abréger avec «&nbsp;…&nbsp;»&nbsp;: $\{A, B, \ldots, Y, Z\}$ pour l'alphabet, ou $\{0, 1, 2, 3, \ldots\}$ pour les entiers naturels.</li>
+    <li><strong>en compréhension</strong> &mdash; on donne une propriété qui caractérise les éléments&nbsp;: $A = \{\,n \mid n \text{ impair, } n \leqslant 10\,\}$ se lit «&nbsp;<em>$A$ est l'ensemble des $n$ tels que $n$ est impair et inférieur à 10</em>&nbsp;». Le trait vertical «&nbsp;$\mid$&nbsp;» se lit «&nbsp;tels que&nbsp;».</li>
+  </ul>
+  <p>Les deux écritures suivantes décrivent donc le même ensemble&nbsp;: $\{n \in \mathbb{N} \mid n < 4\}$ et $\{0, 1, 2, 3\}$.</p>
+
+  <p><strong>Appartenance.</strong> Si $x$ est un élément de l'ensemble $E$, on écrit $x \in E$&nbsp;; sinon, $x \notin E$.</p>
+  <ul class="tight">
+    <li>Par exemple, $1 \in \{1, 3, 5, 7, 9\}$ et $2 \notin \{1, 3, 5, 7, 9\}$.</li>
+  </ul>
+  <p><strong>Ensemble vide.</strong> Il existe un et un seul ensemble sans aucun élément. Il est appelé <strong>ensemble vide</strong> et se note $\emptyset$ ou $\{\,\}$.</p>
+  <ul class="tight">
+    <li>En particulier, quel que soit $x$, on a toujours $x \notin \emptyset$.</li>
+  </ul>
+  <p><strong>Cardinal.</strong> Le nombre d'éléments d'un ensemble fini $E$ s'appelle <strong>le cardinal de $E$</strong> et se note $|E|$.</p>
+  <ul class="tight">
+    <li>Par exemple, si $A = \{1, 3, 5, 7, 9\}$, alors $|A| = 5$.</li>
+  </ul>
+
+  <h2>Illustration</h2>
+  <div class="illus">
+    <div class="svg-box">
+      <svg viewBox="0 0 360 170" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="14" height="14" patternUnits="userSpaceOnUse">
+            <path d="M 14 0 L 0 0 0 14" fill="none" stroke="#bbd6e8" stroke-width="0.4"/>
+          </pattern>
+          <pattern id="grid-major" width="70" height="70" patternUnits="userSpaceOnUse">
+            <path d="M 70 0 L 0 0 0 70" fill="none" stroke="#9cc1d8" stroke-width="0.6"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+        <rect width="100%" height="100%" fill="url(#grid-major)"/>
+        <ellipse cx="160" cy="90" rx="135" ry="62" fill="#fcf3df" fill-opacity="0.55" stroke="#4b371e" stroke-width="1.6"/>
+        <text x="10" y="34" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="22" fill="#4b371e">A</text>
+        <path d="M 22,40 Q 32,44 49,54" fill="none" stroke="#4b371e" stroke-width="0.9"/>
+        <g font-family="EB Garamond, Georgia, serif" font-size="13" fill="#1a1a1a">
+          <circle cx="100" cy="80"  r="2.5"/><text x="108" y="84">1</text>
+          <circle cx="155" cy="65"  r="2.5"/><text x="163" y="69">3</text>
+          <circle cx="210" cy="78"  r="2.5"/><text x="218" y="82">5</text>
+          <circle cx="245" cy="105" r="2.5"/><text x="253" y="109">7</text>
+          <circle cx="140" cy="115" r="2.5"/><text x="148" y="119">9</text>
+        </g>
+        <g font-family="EB Garamond, Georgia, serif" font-size="13" fill="#c33737">
+          <circle cx="325" cy="35" r="2.5"/><text x="333" y="39">2</text>
+          <circle cx="35"  cy="155" r="2.5"/><text x="42"  y="159">4</text>
+          <circle cx="320" cy="155" r="2.5"/><text x="328" y="159">8</text>
+        </g>
+      </svg>
+    </div>
+    <div class="legend">
+      <p>• &nbsp;$5 \in A$, &nbsp;mais $2 \notin A$.</p>
+      <p>• &nbsp;$|A| = 5$.</p>
+      <p>• &nbsp;$\{1, 1, 2\} = \{1, 2\}$ &nbsp;et&nbsp; $\{1,2,3\} = \{3,2,1\}$.</p>
+      <p>• &nbsp;$|\emptyset| = 0$.</p>
+    </div>
+  </div>
+
+  <h2>Exemples</h2>
+  <ul class="tight">
+    <li>On notera $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$ l'ensemble des <strong>entiers naturels</strong>. &nbsp;Par exemple&nbsp;: $7 \in \mathbb{N}$ et $-3 \notin \mathbb{N}$.</li>
+    <li>On notera $\mathbb{Z} = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$ l'ensemble des <strong>entiers relatifs</strong>. &nbsp;Par ex.&nbsp;: $-5 \in \mathbb{Z}$ et $-\frac{1}{2} \notin \mathbb{Z}$.</li>
+    <li>$V = \{a, e, i, o, u, y\} = \{\,x \mid x \text{ est une voyelle minuscule}\,\}$&nbsp;: la même chose, dite en extension puis en compréhension.</li>
+    <li>$D_{12} = \{1, 2, 3, 4, 6, 12\}$&nbsp;: diviseurs de 12.</li>
+    <li>$\{\emptyset\}$ est un ensemble à un élément (l'ensemble vide). En particulier, $\{\emptyset\} \neq \emptyset$.</li>
+  </ul>
+
+  <h2>Pour s'entraîner</h2>
+  <ol>
+    <li>Décris en compréhension&nbsp;: $B = \{1, 4, 9, 16, 25, 36\}$.</li>
+    <li>Décris en extension&nbsp;: $C = \{\,n \in \mathbb{N} \mid n < 7\,\}$. Donne $|C|$.</li>
+    <li>Vrai ou faux&nbsp;? &nbsp;(a)&nbsp;$0 \in \emptyset$ &nbsp;&nbsp; (b)&nbsp;$\emptyset \in \{\emptyset\}$ &nbsp;&nbsp; (c)&nbsp;$\{1, 2\} = \{2, 1, 1\}$.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Pour aller plus loin.</strong> &nbsp;Peut-on parler de l'«&nbsp;ensemble de tous les ensembles qui ne se contiennent pas eux-mêmes&nbsp;»&nbsp;? C'est le <em>paradoxe de Russell</em> &rarr; voir l'exercice 8 (page suivante).
+  </div>
+
+</div>
+
+<!-- =================== PAGE 2 — Exercices =================== -->
+<div class="page">
+
+  <div class="banner-mini">
+    <span class="tag">FICHE 1 &middot; EXERCICES</span>
+    <span class="title">Ensembles et appartenance</span>
+  </div>
+
+  <div class="diff" data-level="1">
+    <h3><span class="stars">★</span>Application directe</h3>
+    <ol>
+      <li>Pour chaque ensemble, donne le cardinal de $E$ et liste ses éléments si l'ensemble est décrit en compréhension.
+        <ol class="subexos">
+          <li>$E_1 = \{n \in \mathbb{N} \mid n < 5\}$</li>
+          <li>$E_2 = \{$lettres distinctes du mot ANANAS$\}$</li>
+          <li>$E_3 = \{n \in \mathbb{N} \mid 12 \leqslant n < 18\}$</li>
+          <li>$E_4 = \{\,\emptyset,\ \{0\},\ \{0,1\}\,\}$</li>
+        </ol>
+      </li>
+      <li>Vrai ou faux&nbsp;?
+        <ol class="subexos">
+          <li>$7 \in \mathbb{N}$</li>
+          <li>$\emptyset \in \emptyset$</li>
+          <li>$\{1\} \in \{\{1\}, \{2\}, \{1, 2\}\}$</li>
+          <li>$\{1, 2, 3\} = \{2, 3, 1, 2\}$</li>
+          <li>$\frac{3}{2} \in \mathbb{N}$</li>
+          <li>$\{a, b\} = \{b, a\}$</li>
+          <li>$|\{\emptyset\}| = 0$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="2">
+    <h3><span class="stars">★★</span>Comprendre et traduire</h3>
+    <ol start="3">
+      <li>Dans une classe, on note $E$ = l'ensemble des élèves qui aiment les épinards, $M$ = l'ensemble des élèves qui font de la musique. Donne un sens en français à&nbsp;:
+        <ol class="subexos">
+          <li>$\{x \mid x \in E \text{ et } x \in M\}$</li>
+          <li>$\{x \mid x \in E \text{ et } x \notin M\}$</li>
+          <li>$\{x \mid x \notin E \text{ et } x \notin M\}$</li>
+        </ol>
+      </li>
+      <li>Décris en compréhension de <strong>deux façons différentes</strong>&nbsp;: $\{2, 4, 6, 8, 10, 12, 14, 16, 18\}$.</li>
+      <li>Trouve un ensemble $X$ vérifiant la contrainte donnée, ou explique pourquoi c'est impossible.
+        <ol class="subexos">
+          <li>$|X| = 3$ et $\emptyset \in X$.</li>
+          <li>$X$ contient $\{1\}$ comme élément, mais ne contient pas $1$.</li>
+          <li>$|X| = 0$ et $X \neq \emptyset$.</li>
+        </ol>
+      </li>
+      <li>On définit la suite d'ensembles&nbsp;: $X_0 = \emptyset$, &nbsp;$X_1 = \{X_0\}$, &nbsp;$X_2 = \{X_0, X_1\}$, &nbsp;$X_3 = \{X_0, X_1, X_2\}$.
+        <ol class="subexos">
+          <li>Réécris $X_3$ avec uniquement les symboles $\{$ $\}$ et $\emptyset$.</li>
+          <li>Donne $|X_0|$, $|X_1|$, $|X_2|$ et $|X_3|$.</li>
+          <li>Écris une relation entre $X_0$ et $X_1$, entre $X_1$ et $X_2$, et entre $X_2$ et $X_3$.</li>
+          <li>Comment définirais-tu $X_n$&nbsp;? Que penses-tu de $|X_n|$&nbsp;?</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="3">
+    <h3><span class="stars">★★★</span>Pousser plus loin</h3>
+    <ol start="7">
+      <li><strong>Trois ensembles emboîtés.</strong> Construis trois ensembles $A, B, C$ tels que&nbsp;: $A$ a 2 éléments, $B$ a 3 éléments, $C$ a 4 éléments, $A \in B$, $B \in C$, et tout élément de $C$ est lui-même un ensemble. Vérifie tes cardinaux.</li>
+      <li><strong>Le paradoxe de Russell.</strong> Soit $R = \{x \mid x \notin x\}$ l'« ensemble des ensembles qui ne se contiennent pas eux-mêmes ».
+        <ol class="subexos">
+          <li>Suppose que $R \in R$. Que dit alors la définition de $R$ à propos de $R$&nbsp;? Conclusion&nbsp;?</li>
+          <li>Suppose maintenant que $R \notin R$. Que dit alors la définition de $R$ à propos de $R$&nbsp;? Conclusion&nbsp;?</li>
+          <li>Que peux-tu en déduire&nbsp;?</li>
+        </ol>
+      </li>
+      <li><strong>Énumération.</strong> On note $U = \{-1, 0, 1\}$. Combien peut-on former d'ensembles différents dont tous les éléments sont pris dans $U$&nbsp;? Liste-les. Combien d'entre eux contiennent $3$ comme élément&nbsp;?</li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>
