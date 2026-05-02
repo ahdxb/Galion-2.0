@@ -64,58 +64,33 @@
   <p><strong>Entiers naturels.</strong> $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$.</p>
   <ul class="tight">
     <li>On note $\mathbb{N}^* = \{1, 2, 3, \ldots\}$ les entiers naturels privés de $0$.</li>
-    <li>On peut faire des calculs simples dans $\mathbb{N}$&nbsp;: si $a \in \mathbb{N}$ et $b \in \mathbb{N}$, alors $a + b \in \mathbb{N}$ et $a \times b = ab \in \mathbb{N}$.</li>
+    <li>$\mathbb{N}$ permet de faire des calculs simples&nbsp;: si $a \in \mathbb{N}$ et $b \in \mathbb{N}$, alors $a + b \in \mathbb{N}$ et $a \times b = ab \in \mathbb{N}$.</li>
     <li>En revanche $3 - 5$ n'a pas de sens dans $\mathbb{N}$.</li>
   </ul>
 
   <p><strong>Entiers relatifs.</strong> $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$.</p>
   <ul class="tight">
     <li>On a $\mathbb{N} \subset \mathbb{Z}$&nbsp;: tout entier naturel est un entier relatif.</li>
-    <li>$\mathbb{Z}$ étend le champ des calculs possibles&nbsp;: si $a, b \in \mathbb{Z}$ (raccourci pour «&nbsp;$a \in \mathbb{Z}$ et $b \in \mathbb{Z}$&nbsp;»), alors on a toujours $a - b \in \mathbb{Z}$. Cependant, $a \div b$ ne donne toujours pas un élément de $\mathbb{Z}$ (par exemple $2 \div 3$).</li>
+    <li>$\mathbb{Z}$ étend le champ des calculs possibles&nbsp;: si $a, b \in \mathbb{Z}$ (raccourci pour «&nbsp;$a \in \mathbb{Z}$ et $b \in \mathbb{Z}$&nbsp;»), alors on a toujours $a - b \in \mathbb{Z}$. Cependant, $a \div b$ ne donne toujours pas un élément de $\mathbb{Z}$ (par exemple $2 \div 3 \notin \mathbb{Z}$).</li>
   </ul>
 
   <p><strong>Rationnels.</strong> $\mathbb{Q}$ est l'ensemble des nombres qui s'écrivent comme une fraction $\frac{p}{q}$ avec $p \in \mathbb{Z}$ et $q \in \mathbb{N}^*$.</p>
   <ul class="tight">
-    <li>On a $\mathbb{Z} \subset \mathbb{Q}$&nbsp;: tout entier $n$ s'écrit $\frac{n}{1}$.</li>
+    <li>On a $\mathbb{Z} \subset \mathbb{Q}$ car tout entier $n$ peut s'écrire comme une fraction&nbsp;: $n = \frac{n}{1}$.</li>
     <li>Plusieurs fractions désignent le même rationnel&nbsp;: $\frac{1}{2} = \frac{2}{4} = \frac{3}{6} = \cdots$</li>
+    <li>$\mathbb{Q}$ permet de faire toutes les opérations courantes&nbsp;: addition, soustraction, multiplication et division (il faut quand même vérifier que le terme de droite n'est pas nul&nbsp;: si $a, b \in \mathbb{Q}$ et $b \neq 0$, alors $\frac{a}{b} = a \div b \in \mathbb{Q}$).</li>
     <li>Limite&nbsp;: il existe des nombres usuels qui ne sont pas dans $\mathbb{Q}$, comme $\sqrt{2}$ ou $\pi$.</li>
   </ul>
 
-  <p><strong>Réels.</strong> $\mathbb{R}$ contient tous les rationnels et aussi les nombres <strong>irrationnels</strong> tels que $\sqrt{2}$, $\pi$, $e$.</p>
+  <p><strong>Réels.</strong> $\mathbb{R}$ contient tous les rationnels et aussi les nombres <strong>irrationnels</strong> tels que $\sqrt{2}$, $\pi$, ou $\sqrt[3]{3}$.</p>
   <ul class="tight">
     <li>On a $\mathbb{Q} \subset \mathbb{R}$.</li>
     <li>$\mathbb{R}$ contient tous les nombres qu'on peut placer sur une droite graduée.</li>
   </ul>
 
-  <p><strong>Chaîne d'inclusions strictes.</strong> $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$.</p>
+  <p><strong>Chaîne d'inclusions strictes.</strong> On a (évident) : $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$.</p>
 
   <p><strong>Notations courantes.</strong> $\mathbb{R}^+$ = réels positifs ou nuls&nbsp;; $\mathbb{R}^-$ = réels négatifs ou nuls&nbsp;; $\mathbb{R}^*$ = $\mathbb{R}$ privé de $0$. Idem pour $\mathbb{Z}^*, \mathbb{Q}^*$.</p>
-
-  <h2>Illustration</h2>
-  <div class="illus-block">
-    <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="210" cy="100" rx="200" ry="85" fill="#fcf3df" fill-opacity="0.35" stroke="#4b371e" stroke-width="1.4"/>
-      <ellipse cx="210" cy="100" rx="155" ry="65" fill="#cfe1f2" fill-opacity="0.30" stroke="#4b371e" stroke-width="1.3"/>
-      <ellipse cx="210" cy="100" rx="105" ry="44" fill="#dfeed4" fill-opacity="0.45" stroke="#4b371e" stroke-width="1.3"/>
-      <ellipse cx="210" cy="100" rx="55" ry="22" fill="#f5d6a3" fill-opacity="0.55" stroke="#4b371e" stroke-width="1.3"/>
-      <g font-family="EB Garamond, Georgia, serif" font-size="14" font-style="italic" fill="#4b371e" text-anchor="middle">
-        <text x="210" y="28">ℝ</text>
-        <text x="210" y="48">ℚ</text>
-        <text x="210" y="66">ℤ</text>
-        <text x="210" y="86">ℕ</text>
-      </g>
-      <g font-family="EB Garamond, Georgia, serif" font-size="13" fill="#1a1a1a">
-        <text x="200" y="105" text-anchor="middle">$0,\ 7$</text>
-        <text x="142" y="108">$-3$</text>
-        <text x="270" y="108">$-1$</text>
-        <text x="78" y="115">$\tfrac{1}{2}$</text>
-        <text x="318" y="115">$\tfrac{3}{4}$</text>
-        <text x="25" y="135">$\pi$</text>
-        <text x="370" y="135">$\sqrt{2}$</text>
-      </g>
-    </svg>
-    <div class="illus-note">Quatre ensembles emboîtés. Chaque «&nbsp;couronne&nbsp;» contient des nombres typiques&nbsp;: $\mathbb{N}$ au cœur, puis les négatifs ajoutent $\mathbb{Z}$, puis les fractions ajoutent $\mathbb{Q}$, puis les irrationnels ajoutent $\mathbb{R}$.</div>
-  </div>
 
   <h2>Exemples</h2>
   <ul class="tight">
@@ -134,7 +109,7 @@
   </ol>
 
   <div class="callout">
-    <strong>Pour aller plus loin.</strong> &nbsp;Existe-t-il «&nbsp;plus&nbsp;» de réels que de rationnels&nbsp;? &rarr; voir l'exercice 9 (page suivante), puis la fiche 30.
+    <strong>Pour aller plus loin.</strong> &nbsp;Existe-t-il «&nbsp;plus&nbsp;» de réels que de rationnels&nbsp;? &rarr; voir l'exercice 8 (page suivante), puis la fiche 30.
   </div>
 
 </div>
@@ -188,8 +163,8 @@
         </ol>
       </li>
       <li>Donne <strong>trois fractions différentes</strong> qui désignent le même rationnel $\frac{3}{4}$.</li>
-      <li>Trois rationnels entre $\frac{1}{3}$ et $\frac{1}{2}$. Penses-tu qu'il y en ait une infinité&nbsp;? Justifie en une phrase.</li>
-      <li>Le domaine compte. Soit $S = \{x \mid x^2 = 2\}$. Donne $S$ si on cherche dans&nbsp;:
+      <li>Donne trois rationnels entre $\frac{1}{3}$ et $\frac{1}{2}$. Combien penses-tu qu'il y en ait en tout&nbsp;? Justifie en une phrase.</li>
+      <li>Le domaine compte. Soit $S = \{x \mid x^2 = 2\}$ et $T = \{x \mid x^2 \leqslant 9\}$. Donne $S$ et $T$ si on cherche dans&nbsp;:
         <ol class="subexos">
           <li>$\mathbb{N}$</li>
           <li>$\mathbb{Z}$</li>
@@ -203,24 +178,20 @@
   <div class="diff" data-level="3">
     <h3><span class="stars">★★★</span>Pousser plus loin</h3>
     <ol start="7">
-      <li><strong>$\sqrt{2}$ n'est pas rationnel.</strong> Suppose par l'absurde que $\sqrt{2} = \frac{p}{q}$, fraction <strong>irréductible</strong> (pgcd($p$, $q$) = 1) avec $p \in \mathbb{N}^*, q \in \mathbb{N}^*$.
+      <li><strong>$\sqrt{2}$ n'est pas rationnel.</strong> On va démontrer <em>par l'absurde</em> que $\sqrt{2}$ n'est pas rationnel&nbsp;: on suppose que $\sqrt{2} \in \mathbb{Q}$ et on aboutit à une contradiction (quelque chose d'impossible). On suppose donc qu'il existe $p, q \in \mathbb{N}^*$ tels que $\sqrt{2} = \frac{p}{q}$.
         <ol class="subexos">
-          <li>Élève au carré&nbsp;: que vaut $p^2$ en fonction de $q$&nbsp;?</li>
-          <li>Déduis que $p^2$ est pair, donc $p$ est pair. Pose $p = 2k$ et substitue.</li>
-          <li>Déduis que $q^2$ est pair, donc $q$ est pair.</li>
-          <li>Quelle contradiction obtient-on avec «&nbsp;pgcd($p$, $q$) = 1&nbsp;»&nbsp;? Conclusion.</li>
+          <li>Élève cette égalité au carré&nbsp;: que vaut $p^2$ en fonction de $q$&nbsp;?</li>
+          <li><em>Petit résultat intermédiaire.</em> Si $n \in \mathbb{N}$ est pair, que peux-tu dire de la parité de $n^2$&nbsp;? Et si $n$ est impair&nbsp;? Donc, si $m$ est un entier et $m^2$ est pair, que peux-tu dire de la parité de $m$&nbsp;?</li>
+          <li>Que peux-tu dire de la parité de $p^2$&nbsp;? De $p$&nbsp;? Pose $p = 2p'$ et substitue dans (a).</li>
+          <li>Déduis que $q$ est pair. Pose $q = 2q'$ et substitue.</li>
+          <li>Construis deux suites <em>infinies</em> d'entiers naturels $p_1, p_2, \ldots, p_n, \ldots$ et $q_1, q_2, \ldots, q_n, \ldots$ telles que $\frac{p_1}{q_1} = \frac{p_2}{q_2} = \cdots = \frac{p_n}{q_n} = \cdots = \sqrt{2}$ et $p_1 > p_2 > \cdots > p_n > \cdots$. Explique pourquoi c'est impossible, et conclus.</li>
         </ol>
       </li>
-      <li><strong>Décimal et rationnel.</strong> Tout rationnel s'écrit en décimal de manière soit finie ($\frac{1}{4} = 0{,}25$), soit infinie périodique ($\frac{1}{3} = 0{,}333\ldots$).
+      <li><strong>Ensembles dénombrables.</strong> Un ensemble est dit <strong>dénombrable</strong> s'il est infini et qu'on peut numéroter ses éléments $x_0, x_1, \ldots, x_n, \ldots,$ etc. On peut alors dire qu'il est «&nbsp;<em>aussi grand que $\mathbb{N}$</em>&nbsp;».
         <ol class="subexos">
-          <li>Donne l'écriture décimale de $\frac{1}{8}$ et $\frac{1}{6}$.</li>
-          <li>Le nombre $0{,}121212\ldots$ (période $12$) est-il rationnel&nbsp;? Si oui, écris-le sous la forme $\frac{p}{q}$.</li>
-        </ol>
-      </li>
-      <li><strong>«&nbsp;Plus de&nbsp;» réels que de rationnels&nbsp;?</strong> On définit&nbsp;: «&nbsp;deux ensembles ont la même taille&nbsp;» s'il existe une <strong>bijection</strong> (correspondance un-à-un) entre eux.
-        <ol class="subexos">
-          <li>Existe-t-il une bijection entre $\mathbb{N}$ et $\mathbb{Z}$&nbsp;? Indication&nbsp;: ranger $0, -1, 1, -2, 2, -3, 3, \ldots$</li>
-          <li>Cantor a prouvé qu'il <strong>n'existe pas</strong> de bijection entre $\mathbb{N}$ et $\mathbb{R}$. On dit que $\mathbb{R}$ est <em>indénombrable</em>. &rarr; voir fiche F30.</li>
+          <li>Montre que $\mathbb{Z}$ est dénombrable.</li>
+          <li>(Chaud) Montre que $\mathbb{Q}$ est dénombrable. <em>Indice</em>&nbsp;: range les fractions $\frac{p}{q}$ par valeur croissante de $|p| + q$ ; pour chaque valeur de $|p| + q$, il n'y a qu'un nombre fini de fractions.</li>
+          <li>(Très très chaud !) Supposons que $\mathcal{P}(\mathbb{N})$ soit dénombrable, autrement dit qu'on peut lister toutes les parties de $\mathbb{N}$&nbsp;: $X_0, X_1, X_2, \ldots$ Construis $Y \subset \mathbb{N}$ tel que pour tout $k \in \mathbb{N}$, $k \in Y$ si et seulement si $k \notin X_k$. Pourquoi $Y \neq X_n$ pour <em>tout</em> $n$&nbsp;? En déduire une contradiction. (C'est la <em>technique d'escalier</em>, ou <em>argument diagonal</em> de Cantor.)</li>
         </ol>
       </li>
     </ol>

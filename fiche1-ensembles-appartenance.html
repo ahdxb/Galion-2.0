@@ -3,158 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Fiche 1 — Ensembles et appartenance</title>
-<script>
-  MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-    chtml: { scale: 1.0 }
-  };
-</script>
+<script src="galion-mathjax-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
 
-<style>
-  /* ---------- Print: real A4 ---------- */
-  @page { size: A4; margin: 0; }
-  @media print {
-    html, body { background: white; }
-    .page { box-shadow: none; margin: 0; }
-    .page + .page { page-break-before: always; }
-  }
-
-  /* ---------- Screen: simulated A4 ---------- */
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: #ddd6c5;
-    font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
-    color: #1a1a1a;
-  }
-  .page {
-    width: 210mm;
-    min-height: 297mm;
-    padding: 16mm 16mm 12mm 16mm;
-    margin: 12mm auto;
-    background: white;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-    box-sizing: border-box;
-    font-size: 11.5pt;
-    line-height: 1.30;
-  }
-
-  /* ---------- Header banner (page 1) ---------- */
-  .banner {
-    background: #4b371e; color: white;
-    padding: 8px 14px 10px 14px; border-radius: 3mm;
-    font-family: 'Inter', 'Helvetica', sans-serif;
-  }
-  .banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
-  .banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
-  .banner .top .meta { opacity: 0.85; }
-  .banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
-
-  /* ---------- Mini banner (page 2) ---------- */
-  .banner-mini {
-    border-top: 3pt solid #4b371e;
-    padding: 7pt 0 9pt 0;
-    margin-bottom: 10pt;
-    font-family: 'Inter', 'Helvetica', sans-serif;
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 10pt;
-  }
-  .banner-mini .tag {
-    background: #4b371e; color: white;
-    padding: 3pt 10pt; border-radius: 1mm;
-    font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em;
-  }
-  .banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
-  .banner-mini .meta { color: #6c5a40; font-size: 10.5pt; }
-
-  /* Two-column sub-questions inside the 1★ band — CSS grid for deterministic order */
-  .diff[data-level="1"] ol.subexos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 18pt;
-    row-gap: 1.5pt;
-  }
-  .diff[data-level="1"] ol.subexos > li { margin: 0; }
-
-  /* ---------- Sections ---------- */
-  h2 {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 14pt; color: #4b371e;
-    margin: 12pt 0 2pt 0;
-    border-bottom: 0.4pt solid #b08642;
-    padding-bottom: 1pt; font-weight: 700;
-  }
-
-  p { margin: 4pt 0; }
-  ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
-  li { margin: 1pt 0; }
-  .tight li { margin: 0.5pt 0; }
-  ol li { padding-left: 4pt; margin: 4pt 0; }
-
-  strong { color: #1a1a1a; }
-  em { color: #4b371e; }
-
-  /* Lettered sub-question lists (a, b, c…) — perfectly aligned */
-  ol.subexos {
-    list-style: none;
-    counter-reset: subexo;
-    padding-left: 0;
-    margin: 3pt 0 3pt 14pt;
-  }
-  ol.subexos > li {
-    counter-increment: subexo;
-    margin: 1.5pt 0;
-    padding-left: 22pt;
-    position: relative;
-  }
-  ol.subexos > li::before {
-    content: counter(subexo, lower-alpha) ")";
-    position: absolute;
-    left: 0;
-    font-weight: 500;
-    color: #6c5a40;
-    width: 18pt;
-  }
-
-  /* ---------- Illustration row ---------- */
-  .illus { display: flex; align-items: center; gap: 12pt; margin: 6pt 0; }
-  .illus .svg-box { flex: 0 0 56%; text-align: center; }
-  .illus .svg-box svg { max-width: 100%; height: auto; border: 0.4pt solid #d4d4d4; border-radius: 1mm; }
-  .illus .legend { flex: 1; font-size: 10.5pt; }
-  .illus .legend p { margin: 3pt 0; }
-
-  /* ---------- "Pour aller plus loin" callout ---------- */
-  .callout {
-    background: #f3eedb; border: 0.5pt solid #b08642;
-    border-radius: 1.5mm; padding: 6pt 10pt;
-    margin-top: 10pt; font-size: 10.5pt;
-  }
-  .callout strong { color: #4b371e; }
-
-  /* ---------- Difficulty bands (page 2) ---------- */
-  .diff {
-    margin: 10pt 0 0 0;
-    border-left: 3pt solid;
-    padding: 4pt 0 4pt 10pt;
-  }
-  .diff h3 {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 12.5pt;
-    margin: 0 0 4pt 0;
-    font-weight: 700;
-  }
-  .diff[data-level="1"] { border-color: #6a9a4a; }
-  .diff[data-level="1"] h3 { color: #4b6e2c; }
-  .diff[data-level="2"] { border-color: #c79900; }
-  .diff[data-level="2"] h3 { color: #8a6800; }
-  .diff[data-level="3"] { border-color: #c33737; }
-  .diff[data-level="3"] h3 { color: #8e2424; }
-  .diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
-
-  mjx-container { font-size: 1em !important; }
-</style>
+<link rel="stylesheet" href="galion.css">
 </head>
 
 <body>
@@ -179,9 +32,9 @@
   <p>Un ensemble peut se décrire de deux façons&nbsp;:</p>
   <ul class="tight">
     <li><strong>en extension</strong> &mdash; on liste tous les éléments entre accolades&nbsp;: $\{1, 3, 5, 7, 9\}$, ou $\{🍎, 🍌, 🥕\}$.<br>Quand le motif est clair, on peut abréger avec «&nbsp;…&nbsp;»&nbsp;: $\{A, B, \ldots, Y, Z\}$ pour l'alphabet, ou $\{0, 1, 2, 3, \ldots\}$ pour les entiers naturels.</li>
-    <li><strong>en compréhension</strong> &mdash; on donne une propriété qui caractérise les éléments&nbsp;: $A = \{\,n \mid n \text{ impair, } n \leqslant 10\,\}$ se lit «&nbsp;<em>$A$ est l'ensemble des $n$ tels que $n$ est impair et inférieur à 10</em>&nbsp;». Le trait vertical «&nbsp;$\mid$&nbsp;» se lit «&nbsp;tels que&nbsp;».</li>
+    <li><strong>en compréhension</strong> &mdash; on donne une propriété qui caractérise les éléments&nbsp;: $A = \{\,n \mid n \text{ impair, } n \le 10\,\}$ se lit «&nbsp;<em>$A$ est l'ensemble des $n$ tels que $n$ est impair et inférieur à 10</em>&nbsp;». Le trait vertical «&nbsp;$\mid$&nbsp;» se lit «&nbsp;tels que&nbsp;».</li>
   </ul>
-  <p>Les deux écritures suivantes décrivent donc le même ensemble&nbsp;: $\{n \in \mathbb{N} \mid n < 4\}$ et $\{0, 1, 2, 3\}$.</p>
+  <p>Les deux écritures suivantes décrivent donc le même ensemble&nbsp;: $\{n \in \NN \mid n < 4\}$ et $\{0, 1, 2, 3\}$.</p>
 
   <p><strong>Appartenance.</strong> Si $x$ est un élément de l'ensemble $E$, on écrit $x \in E$&nbsp;; sinon, $x \notin E$.</p>
   <ul class="tight">
@@ -237,8 +90,8 @@
 
   <h2>Exemples</h2>
   <ul class="tight">
-    <li>On notera $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$ l'ensemble des <strong>entiers naturels</strong>. &nbsp;Par exemple&nbsp;: $7 \in \mathbb{N}$ et $-3 \notin \mathbb{N}$.</li>
-    <li>On notera $\mathbb{Z} = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$ l'ensemble des <strong>entiers relatifs</strong>. &nbsp;Par ex.&nbsp;: $-5 \in \mathbb{Z}$ et $-\frac{1}{2} \notin \mathbb{Z}$.</li>
+    <li>On notera $\NN = \{0, 1, 2, 3, \ldots\}$ l'ensemble des <strong>entiers naturels</strong>. &nbsp;Par exemple&nbsp;: $7 \in \NN$ et $-3 \notin \NN$.</li>
+    <li>On notera $\ZZ = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$ l'ensemble des <strong>entiers relatifs</strong>. &nbsp;Par ex.&nbsp;: $-5 \in \ZZ$ et $-\frac{1}{2} \notin \ZZ$.</li>
     <li>$V = \{a, e, i, o, u, y\} = \{\,x \mid x \text{ est une voyelle minuscule}\,\}$&nbsp;: la même chose, dite en extension puis en compréhension.</li>
     <li>$D_{12} = \{1, 2, 3, 4, 6, 12\}$&nbsp;: diviseurs de 12.</li>
     <li>$\{\emptyset\}$ est un ensemble à un élément (l'ensemble vide). En particulier, $\{\emptyset\} \neq \emptyset$.</li>
@@ -247,7 +100,7 @@
   <h2>Pour s'entraîner</h2>
   <ol>
     <li>Décris en compréhension&nbsp;: $B = \{1, 4, 9, 16, 25, 36\}$.</li>
-    <li>Décris en extension&nbsp;: $C = \{\,n \in \mathbb{N} \mid n < 7\,\}$. Donne $|C|$.</li>
+    <li>Décris en extension&nbsp;: $C = \{\,n \in \NN \mid n < 7\,\}$. Donne $|C|$.</li>
     <li>Vrai ou faux&nbsp;? &nbsp;(a)&nbsp;$0 \in \emptyset$ &nbsp;&nbsp; (b)&nbsp;$\emptyset \in \{\emptyset\}$ &nbsp;&nbsp; (c)&nbsp;$\{1, 2\} = \{2, 1, 1\}$.</li>
   </ol>
 
@@ -270,19 +123,19 @@
     <ol>
       <li>Pour chaque ensemble, donne le cardinal de $E$ et liste ses éléments si l'ensemble est décrit en compréhension.
         <ol class="subexos">
-          <li>$E_1 = \{n \in \mathbb{N} \mid n < 5\}$</li>
+          <li>$E_1 = \{n \in \NN \mid n < 5\}$</li>
           <li>$E_2 = \{$lettres distinctes du mot ANANAS$\}$</li>
-          <li>$E_3 = \{n \in \mathbb{N} \mid 12 \leqslant n < 18\}$</li>
+          <li>$E_3 = \{n \in \NN \mid 12 \le n < 18\}$</li>
           <li>$E_4 = \{\,\emptyset,\ \{0\},\ \{0,1\}\,\}$</li>
         </ol>
       </li>
       <li>Vrai ou faux&nbsp;?
         <ol class="subexos">
-          <li>$7 \in \mathbb{N}$</li>
+          <li>$7 \in \NN$</li>
           <li>$\emptyset \in \emptyset$</li>
           <li>$\{1\} \in \{\{1\}, \{2\}, \{1, 2\}\}$</li>
           <li>$\{1, 2, 3\} = \{2, 3, 1, 2\}$</li>
-          <li>$\frac{3}{2} \in \mathbb{N}$</li>
+          <li>$\frac{3}{2} \in \NN$</li>
           <li>$\{a, b\} = \{b, a\}$</li>
           <li>$|\{\emptyset\}| = 0$</li>
         </ol>

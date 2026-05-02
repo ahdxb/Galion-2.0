@@ -1,0 +1,163 @@
+/* ============================================================
+   Galion 2.0 — Stylesheet partagée par toutes les fiches.
+   Charge ce fichier via <link rel="stylesheet" href="galion.css">.
+   Les styles spécifiques à une fiche peuvent être ajoutés en
+   <style> inline après ce link.
+   ============================================================ */
+
+/* ---------- Print: real A4 ---------- */
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+  .page + .page { page-break-before: always; }
+}
+
+/* ---------- Screen: simulated A4 ---------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ddd6c5;
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  color: #1a1a1a;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 16mm 16mm 12mm 16mm;
+  margin: 12mm auto;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  box-sizing: border-box;
+  font-size: 11.5pt;
+  line-height: 1.30;
+}
+
+/* ---------- Header banner (page 1) ---------- */
+.banner {
+  background: #4b371e; color: white;
+  padding: 8px 14px 10px 14px; border-radius: 3mm;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+}
+.banner .top { display: flex; justify-content: space-between; font-size: 9.5pt; align-items: baseline; }
+.banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+.banner .top .meta { opacity: 0.85; }
+.banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+
+/* ---------- Mini banner (page 2) ---------- */
+.banner-mini {
+  border-top: 3pt solid #4b371e;
+  padding: 7pt 0 9pt 0;
+  margin-bottom: 10pt;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 10pt;
+}
+.banner-mini .tag {
+  background: #4b371e; color: white;
+  padding: 3pt 10pt; border-radius: 1mm;
+  font-size: 10.5pt; font-weight: 700; letter-spacing: 0.06em;
+}
+.banner-mini .title { color: #4b371e; font-weight: 700; font-size: 14pt; }
+.banner-mini .meta { color: #6c5a40; font-size: 10.5pt; }
+
+/* ---------- Sections ---------- */
+h2 {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 14pt; color: #4b371e;
+  margin: 12pt 0 2pt 0;
+  border-bottom: 0.4pt solid #b08642;
+  padding-bottom: 1pt; font-weight: 700;
+}
+
+p { margin: 4pt 0; }
+ul, ol { margin: 3pt 0 3pt 0; padding-left: 18pt; }
+li { margin: 1pt 0; }
+.tight li { margin: 0.5pt 0; }
+ol li { padding-left: 4pt; margin: 4pt 0; }
+
+strong { color: #1a1a1a; }
+em { color: #4b371e; }
+
+/* ---------- Lettered sub-question lists (a, b, c…) ---------- */
+ol.subexos {
+  list-style: none;
+  counter-reset: subexo;
+  padding-left: 0;
+  margin: 3pt 0 3pt 14pt;
+}
+ol.subexos > li {
+  counter-increment: subexo;
+  margin: 1.5pt 0;
+  padding-left: 22pt;
+  position: relative;
+}
+ol.subexos > li::before {
+  content: counter(subexo, lower-alpha) ")";
+  position: absolute; left: 0;
+  font-weight: 500; color: #6c5a40; width: 18pt;
+}
+
+/* Two-column subexos inside the 1★ band — CSS grid for deterministic order */
+.diff[data-level="1"] ol.subexos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18pt; row-gap: 1.5pt;
+}
+.diff[data-level="1"] ol.subexos > li { margin: 0; }
+
+/* ---------- Illustrations (gabarits courants) ---------- */
+/* Inline patate row (F1) */
+.illus { display: flex; align-items: center; gap: 12pt; margin: 6pt 0; }
+.illus .svg-box { flex: 0 0 56%; text-align: center; }
+.illus .svg-box svg { max-width: 100%; height: auto; border: 0.4pt solid #d4d4d4; border-radius: 1mm; }
+.illus .legend { flex: 1; font-size: 10.5pt; }
+.illus .legend p { margin: 3pt 0; }
+
+/* Multi-panel block (F2, F3) */
+.illus-2panel, .illus-3panel { display: grid; gap: 8pt; margin: 6pt 0; }
+.illus-2panel { grid-template-columns: 1fr 1fr; }
+.illus-3panel { grid-template-columns: 1fr 1fr 1fr; }
+.panel { border: 0.4pt solid #d4d4d4; border-radius: 1mm; padding: 5pt 8pt; background: white; }
+.panel-tag { font-family: 'Inter', sans-serif; font-size: 10pt; font-weight: 600; margin-bottom: 2pt; color: #4b371e; text-align: center; }
+.panel.ok .panel-tag { color: #4b6e2c; }
+.panel.bad .panel-tag { color: #8e2424; }
+.panel-formula { font-size: 11pt; margin-bottom: 4pt; }
+.panel svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+.panel-note { font-size: 9.5pt; color: #6c5a40; font-style: italic; margin-top: 3pt; text-align: center; }
+
+/* Single block illustration (F4) */
+.illus-block { border: 0.4pt solid #d4d4d4; border-radius: 1mm; padding: 6pt 8pt; background: white; text-align: center; margin: 6pt 0; }
+.illus-block svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+.illus-note { font-size: 10pt; color: #6c5a40; font-style: italic; margin-top: 4pt; }
+
+/* ---------- "Pour aller plus loin" callout ---------- */
+.callout {
+  background: #f3eedb; border: 0.5pt solid #b08642;
+  border-radius: 1.5mm; padding: 6pt 10pt;
+  margin-top: 10pt; font-size: 10.5pt;
+}
+.callout strong { color: #4b371e; }
+
+/* ---------- Difficulty bands (page 2) ---------- */
+.diff {
+  margin: 10pt 0 0 0;
+  border-left: 3pt solid;
+  padding: 4pt 0 4pt 10pt;
+}
+.diff h3 {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 12.5pt;
+  margin: 0 0 4pt 0;
+  font-weight: 700;
+}
+.diff[data-level="1"] { border-color: #6a9a4a; }
+.diff[data-level="1"] h3 { color: #4b6e2c; }
+.diff[data-level="2"] { border-color: #c79900; }
+.diff[data-level="2"] h3 { color: #8a6800; }
+.diff[data-level="3"] { border-color: #c33737; }
+.diff[data-level="3"] h3 { color: #8e2424; }
+.diff .stars { font-family: 'Inter', sans-serif; letter-spacing: 0.5pt; margin-right: 6pt; }
+
+/* MathJax sizing */
+mjx-container { font-size: 1em !important; }
