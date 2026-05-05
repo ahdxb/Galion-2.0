@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 1 — Ensembles et appartenance</title>
+<script src="galion-mathjax-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="galion.css">
+<link rel="stylesheet" href="galion-editor.css">
+<script src="galion-editor.js" defer></script>
+</head>
+
+<body>
+
+<!-- =================== PAGE 1 — Définition et description =================== -->
+<div class="page">
+
+  <div class="banner" data-anchor="banner">
+    <div class="top">
+      <span class="tag">FICHE 1</span>
+      <span class="meta">Théorie des ensembles &nbsp;•&nbsp; 6<sup>e</sup>/5<sup>e</sup> &nbsp;•&nbsp; Galion 2.0</span>
+    </div>
+    <h1>Ensembles et appartenance</h1>
+  </div>
+
+  <h2 data-anchor="cours">Définition et description</h2>
+
+  <p data-anchor="cours_def_p"><strong>Qu'est-ce qu'un ensemble&nbsp;?</strong> Un <strong>ensemble</strong> est une collection d'objets, appelés ses <strong>éléments</strong>. Un ensemble est entièrement déterminé par sa liste d'éléments&nbsp;: ni l'ordre, ni les répétitions ne comptent.</p>
+  <ul class="tight">
+    <li data-anchor="cours_def_ex_concrets">Quelques exemples concrets&nbsp;: les élèves de ta classe&nbsp;; les fruits dans une corbeille&nbsp;; les nombres pairs entre 0 et 10.</li>
+    <li data-anchor="cours_def_ex_repetitions">L'écriture est insensible à l'ordre et aux répétitions&nbsp;: $\{1, 2, 3\}$, $\{3, 2, 1\}$ et $\{1, 1, 2, 3\}$ désignent <em>le même ensemble</em>.</li>
+  </ul>
+
+  <p data-anchor="cours_modes_intro"><strong>Décrire un ensemble.</strong> Il y a deux façons d'écrire un ensemble&nbsp;: en extension, ou en compréhension.</p>
+
+  <p data-anchor="cours_extension_p"><strong>En extension</strong>&nbsp;: on liste tous les éléments entre des <em>accolades</em>.</p>
+  <ul class="tight">
+    <li data-anchor="cours_extension_ex_simple">$A = \{1, 3, 5, 7, 9\}$ se lit «&nbsp;<em>$A$ est l'ensemble dont les éléments sont 1, 3, 5, 7 et 9</em>&nbsp;».</li>
+    <li data-anchor="cours_extension_ex_fruits">$B = \{🍎, 🍌, 🥕\}$&nbsp;: un ensemble de trois aliments.</li>
+    <li data-anchor="cours_extension_ex_prenoms">$C = \{$Alice, Bob, Carla$\}$&nbsp;: un ensemble de trois prénoms.</li>
+  </ul>
+  <p data-anchor="cours_extension_dots">Quand l'ensemble est grand mais que le motif est clair, on peut abréger avec «&nbsp;$\ldots$&nbsp;» (lu «&nbsp;<em>et ainsi de suite</em>&nbsp;»)&nbsp;:</p>
+  <ul class="tight">
+    <li data-anchor="cours_extension_dots_alphabet">$\{A, B, \ldots, Y, Z\}$&nbsp;: l'alphabet en majuscules (26 éléments).</li>
+    <li data-anchor="cours_extension_dots_naturels">$\{0, 1, 2, 3, \ldots\}$&nbsp;: les entiers naturels (ensemble infini, voir aussi $\NN$ ci-dessous).</li>
+  </ul>
+
+  <p data-anchor="cours_comprehension_p"><strong>En compréhension</strong>&nbsp;: on donne une <strong>propriété</strong> qui caractérise les éléments. Le trait vertical «&nbsp;$\mid$&nbsp;» se lit «&nbsp;<em>tels que</em>&nbsp;».</p>
+  <ul class="tight">
+    <li data-anchor="cours_comprehension_ex_impairs">$A = \{\,n \mid n \text{ impair, } n \le 10\,\}$ se lit «&nbsp;<em>$A$ est l'ensemble des $n$ tels que $n$ est impair et $n$ est inférieur ou égal à 10</em>&nbsp;». En extension&nbsp;: $A = \{1, 3, 5, 7, 9\}$.</li>
+    <li data-anchor="cours_comprehension_ex_petits">$\{x \in \NN \mid x < 5\}$ se lit «&nbsp;<em>les $x$ de $\NN$ tels que $x$ est strictement inférieur à 5</em>&nbsp;», soit $\{0, 1, 2, 3, 4\}$.</li>
+    <li data-anchor="cours_comprehension_ex_pairs">$\{x \in \NN \mid x \text{ pair}\}$&nbsp;: «&nbsp;<em>les $x$ de $\NN$ qui sont pairs</em>&nbsp;», soit $\{0, 2, 4, 6, \ldots\}$ (ensemble infini).</li>
+    <li data-anchor="cours_comprehension_ex_voyelles">$V = \{a, e, i, o, u, y\} = \{\,x \mid x \text{ est une voyelle minuscule}\,\}$&nbsp;: la même chose, dite en extension puis en compréhension.</li>
+  </ul>
+  <p data-anchor="cours_modes_concl">Les deux écritures peuvent décrire le même ensemble&nbsp;: $\{n \in \NN \mid n < 4\}$ et $\{0, 1, 2, 3\}$.</p>
+
+</div>
+
+<!-- =================== PAGE 2 — Notations, illustration, entraînement =================== -->
+<div class="page">
+
+  <h2 data-anchor="notations">Notations utiles</h2>
+
+  <p data-anchor="cours_appartenance"><strong>Appartenance</strong>&nbsp;: pour dire qu'un objet $x$ est un élément d'un ensemble $E$.</p>
+  <ul class="tight">
+    <li data-anchor="cours_appartenance_def">On écrit $x \in E$ et on lit «&nbsp;<em>$x$ appartient à $E$</em>&nbsp;» ou «&nbsp;<em>$x$ est dans $E$</em>&nbsp;». L'inverse se note $x \notin E$ («&nbsp;<em>$x$ n'appartient pas à $E$</em>&nbsp;»).</li>
+    <li data-anchor="cours_appartenance_ex">Exemples&nbsp;: $1 \in \{1, 3, 5\}$ (vrai)&nbsp;; $2 \notin \{1, 3, 5\}$ (vrai)&nbsp;; 🍎$\,\in \{🍎, 🍌, 🥕\}$ (la pomme est dans la corbeille).</li>
+  </ul>
+
+  <p data-anchor="cours_vide"><strong>Ensemble vide</strong>&nbsp;: il existe un et un seul ensemble qui n'a aucun élément.</p>
+  <ul class="tight">
+    <li data-anchor="cours_vide_def">On l'appelle l'<strong>ensemble vide</strong> et on le note $\emptyset$ ou $\{\,\}$ (lu «&nbsp;<em>ensemble vide</em>&nbsp;» ou simplement «&nbsp;<em>vide</em>&nbsp;»).</li>
+    <li data-anchor="cours_vide_axiome">Quel que soit $x$, on a toujours $x \notin \emptyset$&nbsp;: rien n'appartient au vide.</li>
+    <li data-anchor="cours_vide_ex">Exemples&nbsp;: l'ensemble des entiers dont le carré est strictement négatif vaut $\emptyset$&nbsp;; l'ensemble des nombres premiers pairs strictement supérieurs à 2 vaut $\emptyset$.</li>
+  </ul>
+
+  <p data-anchor="cours_cardinal"><strong>Cardinal</strong>&nbsp;: le nombre d'éléments d'un ensemble fini.</p>
+  <ul class="tight">
+    <li data-anchor="cours_cardinal_def">Si $E$ est fini, on note $|E|$ son <strong>cardinal</strong> (lu «&nbsp;<em>cardinal de $E$</em>&nbsp;» ou «&nbsp;<em>nombre d'éléments de $E$</em>&nbsp;»).</li>
+    <li data-anchor="cours_cardinal_ex">Exemples&nbsp;: $|\{1, 3, 5, 7, 9\}| = 5$&nbsp;; $|\{🍎, 🍌, 🥕\}| = 3$&nbsp;; $|\emptyset| = 0$&nbsp;; $|\{\emptyset\}| = 1$ (un seul élément, qui est l'ensemble vide).</li>
+  </ul>
+
+  <p data-anchor="cours_entiers"><strong>Quelques ensembles à connaître</strong>&nbsp;:</p>
+  <ul class="tight">
+    <li data-anchor="ex_naturels">$\NN = \{0, 1, 2, 3, \ldots\}$&nbsp;: les <strong>entiers naturels</strong>. Par ex.&nbsp;: $7 \in \NN$, $-3 \notin \NN$.</li>
+    <li data-anchor="ex_relatifs">$\ZZ = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$&nbsp;: les <strong>entiers relatifs</strong>. Par ex.&nbsp;: $-5 \in \ZZ$, $-\tfrac{1}{2} \notin \ZZ$.</li>
+  </ul>
+
+  <h2 data-anchor="illus">Illustration</h2>
+  <div class="illus" data-anchor="illus_block">
+    <div class="svg-box">
+      <svg viewBox="0 0 360 170" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="14" height="14" patternUnits="userSpaceOnUse">
+            <path d="M 14 0 L 0 0 0 14" fill="none" stroke="#bbd6e8" stroke-width="0.4"/>
+          </pattern>
+          <pattern id="grid-major" width="70" height="70" patternUnits="userSpaceOnUse">
+            <path d="M 70 0 L 0 0 0 70" fill="none" stroke="#9cc1d8" stroke-width="0.6"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+        <rect width="100%" height="100%" fill="url(#grid-major)"/>
+        <ellipse cx="160" cy="90" rx="135" ry="62" fill="#fcf3df" fill-opacity="0.55" stroke="#4b371e" stroke-width="1.6"/>
+        <text x="10" y="34" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="22" fill="#4b371e">A</text>
+        <path d="M 22,40 Q 32,44 49,54" fill="none" stroke="#4b371e" stroke-width="0.9"/>
+        <g font-family="EB Garamond, Georgia, serif" font-size="13" fill="#1a1a1a">
+          <circle cx="100" cy="80"  r="2.5"/><text x="108" y="84">1</text>
+          <circle cx="155" cy="65"  r="2.5"/><text x="163" y="69">3</text>
+          <circle cx="210" cy="78"  r="2.5"/><text x="218" y="82">5</text>
+          <circle cx="245" cy="105" r="2.5"/><text x="253" y="109">7</text>
+          <circle cx="140" cy="115" r="2.5"/><text x="148" y="119">9</text>
+        </g>
+        <g font-family="EB Garamond, Georgia, serif" font-size="13" fill="#c33737">
+          <circle cx="325" cy="35" r="2.5"/><text x="333" y="39">2</text>
+          <circle cx="35"  cy="155" r="2.5"/><text x="42"  y="159">4</text>
+          <circle cx="320" cy="155" r="2.5"/><text x="328" y="159">8</text>
+        </g>
+      </svg>
+    </div>
+    <div class="legend">
+      <p>• &nbsp;$5 \in A$, &nbsp;mais $2 \notin A$.</p>
+      <p>• &nbsp;$|A| = 5$.</p>
+      <p>• &nbsp;$\{1, 1, 2\} = \{1, 2\}$ &nbsp;et&nbsp; $\{1,2,3\} = \{3,2,1\}$.</p>
+      <p>• &nbsp;$|\emptyset| = 0$.</p>
+    </div>
+  </div>
+
+  <h2 data-anchor="train">Pour s'entraîner</h2>
+  <ol>
+    <li data-anchor="train_1">Décris en compréhension&nbsp;: $B = \{1, 4, 9, 16, 25, 36\}$.</li>
+    <li data-anchor="train_2">Décris en extension&nbsp;: $C = \{\,n \in \NN \mid n < 7\,\}$. Donne $|C|$.</li>
+    <li data-anchor="train_3">Vrai ou faux&nbsp;? &nbsp;(a)&nbsp;$0 \in \emptyset$ &nbsp;&nbsp; (b)&nbsp;$\emptyset \in \{\emptyset\}$ &nbsp;&nbsp; (c)&nbsp;$\{1, 2\} = \{2, 1, 1\}$.</li>
+  </ol>
+
+  <div class="callout" data-anchor="going_further">
+    <strong>Pour aller plus loin.</strong> &nbsp;Peut-on parler de l'«&nbsp;ensemble de tous les ensembles qui ne se contiennent pas eux-mêmes&nbsp;»&nbsp;? C'est le <em>paradoxe de Russell</em> &rarr; voir l'exercice 8 (page suivante).
+  </div>
+
+</div>
+
+<!-- =================== PAGE 3 — Exercices =================== -->
+<div class="page">
+
+  <div class="banner-mini" data-anchor="p2_banner">
+    <span class="tag">FICHE 1 &middot; EXERCICES</span>
+    <span class="title">Ensembles et appartenance</span>
+  </div>
+
+  <div class="diff" data-level="1" data-anchor="star1_block">
+    <h3><span class="stars">★</span>Application directe</h3>
+    <ol>
+      <li data-anchor="ex1">Pour chaque ensemble, donne le cardinal de $E$ et liste ses éléments si l'ensemble est décrit en compréhension.
+        <ol class="subexos">
+          <li>$E_1 = \{n \in \NN \mid n < 5\}$</li>
+          <li>$E_2 = \{$lettres distinctes du mot ANANAS$\}$</li>
+          <li>$E_3 = \{n \in \NN \mid 12 \le n < 18\}$</li>
+          <li>$E_4 = \{\,\emptyset,\ \{0\},\ \{0,1\}\,\}$</li>
+        </ol>
+      </li>
+      <li data-anchor="ex2">Vrai ou faux&nbsp;?
+        <ol class="subexos">
+          <li>$7 \in \NN$</li>
+          <li>$\emptyset \in \emptyset$</li>
+          <li>$\{1\} \in \{\{1\}, \{2\}, \{1, 2\}\}$</li>
+          <li>$\{1, 2, 3\} = \{2, 3, 1, 2\}$</li>
+          <li>$\frac{3}{2} \in \NN$</li>
+          <li>$\{a, b\} = \{b, a\}$</li>
+          <li>$|\{\emptyset\}| = 0$</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="2" data-anchor="star2_block">
+    <h3><span class="stars">★★</span>Comprendre et traduire</h3>
+    <ol start="3">
+      <li data-anchor="ex3">Dans une classe, on note $E$ = l'ensemble des élèves qui aiment les épinards, $M$ = l'ensemble des élèves qui font de la musique. Donne un sens en français à&nbsp;:
+        <ol class="subexos">
+          <li>$\{x \mid x \in E \text{ et } x \in M\}$</li>
+          <li>$\{x \mid x \in E \text{ et } x \notin M\}$</li>
+          <li>$\{x \mid x \notin E \text{ et } x \notin M\}$</li>
+        </ol>
+      </li>
+      <li data-anchor="ex4">Décris en compréhension de <strong>deux façons différentes</strong>&nbsp;: $\{2, 4, 6, 8, 10, 12, 14, 16, 18\}$.</li>
+      <li data-anchor="ex5">Trouve un ensemble $X$ vérifiant la contrainte donnée, ou explique pourquoi c'est impossible.
+        <ol class="subexos">
+          <li>$|X| = 3$ et $\emptyset \in X$.</li>
+          <li>$X$ contient $\{1\}$ comme élément, mais ne contient pas $1$.</li>
+          <li>$|X| = 0$ et $X \neq \emptyset$.</li>
+        </ol>
+      </li>
+      <li data-anchor="ex6">On définit la suite d'ensembles&nbsp;: $X_0 = \emptyset$, &nbsp;$X_1 = \{X_0\}$, &nbsp;$X_2 = \{X_0, X_1\}$, &nbsp;$X_3 = \{X_0, X_1, X_2\}$.
+        <ol class="subexos">
+          <li>Réécris $X_3$ avec uniquement les symboles $\{$ $\}$ et $\emptyset$.</li>
+          <li>Donne $|X_0|$, $|X_1|$, $|X_2|$ et $|X_3|$.</li>
+          <li>Écris une relation entre $X_0$ et $X_1$, entre $X_1$ et $X_2$, et entre $X_2$ et $X_3$.</li>
+          <li>Comment définirais-tu $X_n$&nbsp;? Que penses-tu de $|X_n|$&nbsp;?</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div class="diff" data-level="3" data-anchor="star3_block">
+    <h3><span class="stars">★★★</span>Pousser plus loin</h3>
+    <ol start="7">
+      <li data-anchor="ex7"><strong>Trois ensembles emboîtés.</strong> Construis trois ensembles $A, B, C$ tels que&nbsp;: $A$ a 2 éléments, $B$ a 3 éléments, $C$ a 4 éléments, $A \in B$, $B \in C$, et tout élément de $C$ est lui-même un ensemble. Vérifie tes cardinaux.</li>
+      <li data-anchor="ex8"><strong>Le paradoxe de Russell.</strong> Soit $R = \{x \mid x \notin x\}$ l'« ensemble des ensembles qui ne se contiennent pas eux-mêmes ».
+        <ol class="subexos">
+          <li>Suppose que $R \in R$. Que dit alors la définition de $R$ à propos de $R$&nbsp;? Conclusion&nbsp;?</li>
+          <li>Suppose maintenant que $R \notin R$. Que dit alors la définition de $R$ à propos de $R$&nbsp;? Conclusion&nbsp;?</li>
+          <li>Que peux-tu en déduire&nbsp;?</li>
+        </ol>
+      </li>
+      <li data-anchor="ex9"><strong>Énumération.</strong> On note $U = \{-1, 0, 1\}$. Combien peut-on former d'ensembles différents dont tous les éléments sont pris dans $U$&nbsp;? Liste-les. Combien d'entre eux contiennent $3$ comme élément&nbsp;?</li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,469 @@
+/* ============================================================
+ * mathdown.css — Galion 2.0 page form
+ *
+ * All form decisions live here. Substance lives in the .mathdown
+ * source. Editor chrome lives in mathdown-editor.css.
+ *
+ * Conventions for class names produced by the renderer:
+ *   .page                   page container (auto or :::page)
+ *   .banner                 fiche banner (composed from front-matter)
+ *   .role-{name}            inline directive  :name[…]
+ *   .block-{name}           block directive   ::name[…]  / :::name
+ *   .math-display           block math
+ *
+ * To restyle a role or block, edit only this file.
+ * ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --c-ink:        #1a1a1a;
+  --c-paper:      #ffffff;
+  --c-bg:         #ddd6c5;
+  --c-accent:     #4b371e;
+  --c-accent-2:   #b08642;
+  --c-accent-3:   #6c5a40;
+  --c-rule:       #b08642;
+  --c-callout-bg: #f3eedb;
+  --c-ok:         #4b6e2c;
+  --c-warn:       #8a6800;
+  --c-bad:        #8e2424;
+  --font-serif:   'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Inter', 'Helvetica', sans-serif;
+  --page-w:       210mm;
+  --page-h:       297mm;
+  --page-pad:     16mm 16mm 12mm 16mm;
+}
+
+/* ---------- Print ---------- */
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+  .page + .page { page-break-before: always; }
+}
+
+/* ---------- Screen ---------- */
+html, body {
+  margin: 0; padding: 0;
+  background: var(--c-bg);
+  font-family: var(--font-serif);
+  color: var(--c-ink);
+}
+.page {
+  width: var(--page-w);
+  min-height: var(--page-h);
+  padding: var(--page-pad);
+  margin: 12mm auto;
+  background: var(--c-paper);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  box-sizing: border-box;
+  font-size: 11.5pt;
+  line-height: 1.30;
+}
+
+/* ---------- Banner ---------- */
+.banner {
+  background: var(--c-accent); color: white;
+  padding: 8px 14px 10px 14px;
+  border-radius: 3mm;
+  font-family: var(--font-sans);
+}
+.banner .top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 9.5pt;
+}
+.banner .top .tag { font-weight: 700; letter-spacing: 0.06em; }
+.banner .top .meta { opacity: 0.85; }
+.banner h1 { margin: 2px 0 0 0; font-size: 21pt; font-weight: 700; line-height: 1.15; }
+
+/* ---------- Section headings ---------- */
+h2 {
+  font-family: var(--font-serif);
+  font-size: 14pt; color: var(--c-accent);
+  margin: 12pt 0 2pt 0;
+  border-bottom: 0.4pt solid var(--c-rule);
+  padding-bottom: 1pt;
+  font-weight: 700;
+}
+h3 {
+  font-family: var(--font-serif);
+  font-size: 12.5pt; color: var(--c-accent);
+  margin: 10pt 0 2pt 0; font-weight: 700;
+}
+
+/* ---------- Prose ---------- */
+p  { margin: 4pt 0; }
+ul, ol { margin: 3pt 0; padding-left: 18pt; }
+li { margin: 1pt 0; }
+ol li { padding-left: 4pt; margin: 4pt 0; }
+
+strong { color: var(--c-ink); }
+em     { color: var(--c-accent); font-style: italic; }
+u      { text-decoration: underline; text-decoration-thickness: 0.6pt; }
+
+a { color: var(--c-accent); text-underline-offset: 2px; }
+
+/* ---------- Inline roles ---------- */
+
+/* Paragraph header (the "Sets." lead-in pattern). Renders inline. */
+.role-heading {
+  font-weight: 700;
+  color: var(--c-ink);
+}
+.role-heading::after { content: ""; }
+
+/* Defined term — mark it as Small Caps + bold. */
+.role-defined {
+  font-variant: small-caps;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--c-ink);
+}
+
+/* List-item label — italic + auto colon. */
+.role-label {
+  font-style: italic;
+  color: var(--c-accent);
+}
+.role-label::after { content: " :"; }
+
+/* Cross-reference */
+.role-ref { text-decoration: none; color: var(--c-accent); border-bottom: 0.4pt dotted var(--c-accent); }
+
+/* Inline notation (rendered like code) */
+.role-notation {
+  font-family: var(--font-serif);
+  background: #f6f0dd; padding: 0 0.25em; border-radius: 1.5pt;
+}
+
+/* Inline exemple (rare; usually you'll use the block form) */
+.role-exemple { font-style: italic; color: var(--c-accent-3); }
+
+/* ---------- Block directives ---------- */
+
+/* Generic block title bar produced by the renderer when a label is given. */
+.block-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 10.5pt;
+  color: var(--c-accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 4pt;
+}
+
+/* Definition / theorem / proposition family — boxed math environment. */
+.block-definition,
+.block-theoreme,
+.block-propriete,
+.block-lemme,
+.block-corollaire {
+  border-left: 3pt solid var(--c-accent-2);
+  background: #fcf8ec;
+  padding: 6pt 10pt;
+  margin: 8pt 0;
+  border-radius: 0 1.5mm 1.5mm 0;
+}
+.block-theoreme   { border-left-color: var(--c-accent); }
+.block-propriete  { border-left-color: var(--c-accent-2); }
+.block-definition { border-left-color: var(--c-accent-3); }
+
+/* Proof / démonstration */
+.block-demonstration {
+  font-size: 11pt;
+  color: var(--c-accent-3);
+  padding: 4pt 0 4pt 12pt;
+  border-left: 1.5pt dashed var(--c-accent-3);
+  margin: 6pt 0;
+}
+.block-demonstration::after {
+  content: "□";
+  display: block; text-align: right;
+  margin-top: 2pt; font-size: 12pt; color: var(--c-accent-3);
+}
+
+/* Exemple / contre-exemple — light boxed callout */
+.block-exemple,
+.block-contre-exemple {
+  background: #fcf8ec;
+  border-left: 3pt solid var(--c-ok);
+  padding: 5pt 10pt; margin: 6pt 0;
+  border-radius: 0 1.5mm 1.5mm 0;
+}
+.block-contre-exemple { border-left-color: var(--c-bad); }
+
+/* Méthode — numbered recipe */
+.block-methode {
+  background: #f4eddc;
+  border: 0.5pt solid var(--c-accent-2);
+  padding: 6pt 10pt; margin: 8pt 0;
+  border-radius: 1.5mm;
+}
+
+/* Notation block */
+.block-notation {
+  background: #f6f0dd;
+  padding: 5pt 10pt; margin: 6pt 0;
+  border-radius: 1.5mm;
+  font-size: 11pt;
+}
+
+/* Remarque / Attention */
+.block-remarque,
+.block-attention {
+  background: var(--c-callout-bg);
+  border: 0.5pt solid var(--c-rule);
+  padding: 6pt 10pt; margin: 8pt 0;
+  border-radius: 1.5mm;
+  font-size: 10.5pt;
+}
+.block-attention {
+  border-color: var(--c-bad);
+  background: #fbeaea;
+}
+
+/* Generic callout (Pour aller plus loin, etc.) */
+.block-callout {
+  background: var(--c-callout-bg);
+  border: 0.5pt solid var(--c-rule);
+  border-radius: 1.5mm;
+  padding: 6pt 10pt;
+  margin-top: 10pt;
+  font-size: 10.5pt;
+}
+
+/* Difficulty band (:::niveau[1|2|3]) */
+.block-niveau {
+  margin: 10pt 0 0 0;
+  padding: 4pt 0 4pt 10pt;
+  border-left: 3pt solid;
+}
+.block-niveau[data-level="1"] { border-color: var(--c-ok); }
+.block-niveau[data-level="2"] { border-color: var(--c-warn); }
+.block-niveau[data-level="3"] { border-color: var(--c-bad); }
+.block-niveau[data-level="1"] h3 { color: var(--c-ok); }
+.block-niveau[data-level="2"] h3 { color: var(--c-warn); }
+.block-niveau[data-level="3"] h3 { color: var(--c-bad); }
+.block-niveau .stars { font-family: var(--font-sans); letter-spacing: 0.5pt; margin-right: 6pt; }
+
+/* Continuous numbering for exercises across :::niveau bands.
+   Each `<h2>` resets the counter; every direct `<ol> > <li>` inside a
+   .block-niveau increments it. This way the source can keep `1.` in
+   each band without any manual renumbering — the displayed numbers
+   are 1, 2, 3, 4, 5, 6, 7, 8, 9 across the three difficulty bands. */
+h2 { counter-reset: exercice; }
+.block-niveau > ol {
+  list-style: none;
+  padding-left: 24pt;
+  margin: 6pt 0;
+}
+.block-niveau > ol > li {
+  counter-increment: exercice;
+  position: relative;
+  padding-left: 4pt;
+  margin: 4pt 0;
+}
+.block-niveau > ol > li::before {
+  content: counter(exercice) ".";
+  position: absolute;
+  left: -22pt;
+  width: 18pt;
+  text-align: right;
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+/* Sub-exercises: a nested list inside a numbered exercise gets a)/b)/c)
+   markers via CSS counters. For the easy ★ band, lay them out in two
+   columns (port from the original galion.css, scoped to .block-niveau). */
+/* Match the sub-list whether it sits directly under the exercise <li>
+   or is wrapped in a :::cols container. */
+.block-niveau ol > li > ol,
+.block-niveau ol > li > ul,
+.block-niveau ol > li > .block-cols > ol,
+.block-niveau ol > li > .block-cols > ul {
+  list-style: none;
+  counter-reset: subexo;
+  padding-left: 0;
+  margin: 3pt 0 3pt 14pt;
+}
+.block-niveau ol > li > ol > li,
+.block-niveau ol > li > ul > li,
+.block-niveau ol > li > .block-cols > ol > li,
+.block-niveau ol > li > .block-cols > ul > li {
+  counter-increment: subexo;
+  margin: 1.5pt 0;
+  padding-left: 22pt;
+  position: relative;
+}
+.block-niveau ol > li > ol > li::before,
+.block-niveau ol > li > ul > li::before,
+.block-niveau ol > li > .block-cols > ol > li::before,
+.block-niveau ol > li > .block-cols > ul > li::before {
+  content: counter(subexo, lower-alpha) ")";
+  position: absolute; left: 0;
+  font-weight: 500;
+  color: var(--c-accent-3);
+  width: 18pt;
+}
+
+/* :::cols — multi-column layout for the sub-list it wraps.
+   Use minmax(0, 1fr) so a wide inline-block (math) doesn't push the
+   track past its share of the parent. Items shorter than half the
+   parent fit cleanly; if you opt into :::cols on items that are too
+   wide, they will visually overlap — the directive is a hint, not a
+   safety net. Use it only when items are short. */
+.block-niveau .block-cols > ul,
+.block-niveau .block-cols > ol {
+  display: grid;
+  column-gap: 14pt;
+  row-gap: 1.5pt;
+}
+.block-niveau .block-cols[data-cols="2"] > ul,
+.block-niveau .block-cols[data-cols="2"] > ol {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.block-niveau .block-cols[data-cols="3"] > ul,
+.block-niveau .block-cols[data-cols="3"] > ol {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+.block-niveau .block-cols > ul > li,
+.block-niveau .block-cols > ol > li {
+  margin: 0;
+  min-width: 0;
+}
+
+/* Paired/solo mode (when source uses nested bullets to mark pair partners).
+   Each row is either two cells (pair) or one full-width cell (solo); CSS
+   counter for a)/b)/c) markers spans both shapes so numbering stays
+   consistent across mixed rows. */
+.block-niveau .block-cols-paired {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5pt;
+  margin: 3pt 0 3pt 14pt;
+  counter-reset: subexo;
+}
+.block-niveau .block-cols-paired .cols-row:not(.cols-solo) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 14pt;
+}
+.block-niveau .block-cols-paired .cols-cell,
+.block-niveau .block-cols-paired .cols-solo {
+  counter-increment: subexo;
+  padding-left: 22pt;
+  position: relative;
+  min-width: 0;
+}
+.block-niveau .block-cols-paired .cols-cell::before,
+.block-niveau .block-cols-paired .cols-solo::before {
+  content: counter(subexo, lower-alpha) ")";
+  position: absolute; left: 0;
+  font-weight: 500;
+  color: var(--c-accent-3);
+  width: 18pt;
+}
+/* The original Galion fiche used a 2-column layout for ★ sub-questions,
+   but that only worked when each item was a short formula. With longer
+   set descriptions like \set{\text{lundi}, …, \text{dimanche}} or
+   \setof{n}{n \text{ est … strictement inférieur à 20}}, MathJax renders
+   each as a non-wrapping inline-block wider than half the page, which
+   collides with the neighbouring column. Single column is robust to any
+   item length. Re-enable the 2-column layout (with `:::niveau[1]{cols=2}`
+   or similar) once we're confident sub-questions stay short. */
+
+/* Solution / Indication — collapsible-friendly defaults */
+.block-solution,
+.block-indication {
+  background: #f6f6f0;
+  border-left: 2pt solid var(--c-accent-3);
+  padding: 4pt 10pt; margin: 4pt 0 8pt 12pt;
+  font-size: 10.5pt;
+}
+
+/* Figure with caption */
+.block-figure {
+  text-align: center;
+  margin: 8pt 0;
+}
+.block-figure .block-title {
+  font-style: italic; font-weight: 500;
+  text-transform: none; letter-spacing: 0;
+  color: var(--c-accent-3);
+  margin-top: 4pt;
+}
+
+/* ---------- Comments (:::comment / :comment[…]) ---------- */
+
+/* Comments are meta, not content. Hidden by default. */
+.block-comment,
+.role-comment { display: none; }
+
+/* Visible only inside the Mathdown editor. */
+body.mathdown-edit .block-comment {
+  display: block;
+  background: #fff8d8;
+  border: 1px dashed #b08642;
+  border-radius: 1.5mm;
+  padding: 6pt 10pt 6pt 28pt;
+  margin: 6pt 0;
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  color: var(--c-accent);
+  position: relative;
+  line-height: 1.45;
+}
+body.mathdown-edit .block-comment::before {
+  content: "💬";
+  position: absolute;
+  left: 8pt; top: 5pt;
+  font-size: 13pt;
+}
+body.mathdown-edit .block-comment .block-title {
+  font-size: 9pt; color: #b08642;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin-bottom: 2pt;
+}
+
+body.mathdown-edit .role-comment {
+  display: inline;
+  background: #fff8d8;
+  border: 1px dashed #b08642;
+  border-radius: 2pt;
+  padding: 0 4pt;
+  font-family: var(--font-sans);
+  font-size: 90%;
+  color: var(--c-accent);
+}
+body.mathdown-edit .role-comment::before { content: "💬 "; }
+
+/* ---------- Line-break protection around math + guillemets ---------- */
+
+/* The French typography pass wraps "math + NBSP + closing punct" (and
+   "« + NBSP + math") in <span class="nobr"> because MathJax renders math
+   as an inline-block, and browsers permit a line break at an inline-block
+   boundary even when the adjacent character is NBSP. */
+.nobr { white-space: nowrap; }
+
+/* ---------- Page-break hints (::pagebreak) ---------- */
+
+/* Soft pagination hint. Invisible in the rendered output but kept in the
+   layout flow so the auto-paginator can read its position. */
+.page-break-hint {
+  display: block;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+/* ---------- Display math ---------- */
+.math-display {
+  margin: 6pt 0;
+  text-align: center;
+}
+
+/* ---------- MathJax sizing ---------- */
+mjx-container { font-size: 1em !important; }

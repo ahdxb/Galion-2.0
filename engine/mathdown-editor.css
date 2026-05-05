@@ -1,0 +1,229 @@
+/* ============================================================
+ * mathdown-editor.css — Galion 2.0
+ *
+ * Editor chrome only (toolbar, split pane, divider, textarea,
+ * modal). NO content styling — that lives in mathdown.css and
+ * keeps the preview pane visually identical to the static page.
+ * ============================================================ */
+
+@media print {
+  body.mathdown-edit .mdne-shell { display: none !important; }
+}
+
+body.mathdown-edit {
+  margin: 0;
+  background: var(--c-bg, #ddd6c5);
+  /* keep the original rendered tree out of the document flow until
+     the editor moves it into the preview pane */
+  overflow: hidden;
+}
+body.mathdown-edit > #mathdown-root { display: none; }
+
+/* ---------- Shell ---------- */
+
+.mdne-shell {
+  position: fixed; inset: 0;
+  display: grid; grid-template-rows: 44px 1fr;
+  background: #1a1a1a;
+  z-index: 1000;
+  /* No `color` or `font-family` here on purpose — they'd bleed into
+     the preview pane and override mathdown.css typography. Each chrome
+     element below sets its own. */
+}
+
+/* ---------- Toolbar ---------- */
+
+.mdne-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 12px;
+  background: #4b371e; color: white;
+  font-family: 'Inter', system-ui, sans-serif;
+  border-bottom: 1px solid #2a1f10;
+  font-size: 12.5px;
+}
+.mdne-title  { font-weight: 700; letter-spacing: 0.04em; margin-right: 6px; }
+.mdne-status { font-size: 11px; opacity: 0.75; min-width: 110px; }
+.mdne-spacer { flex: 1; }
+.mdne-sep {
+  width: 1px; height: 22px;
+  background: rgba(255,255,255,0.2);
+  margin: 0 4px;
+}
+
+.mdne-btn {
+  background: #b08642; color: white; border: none;
+  padding: 6px 10px; border-radius: 3px;
+  font: inherit; font-size: 11.5px; font-weight: 500;
+  cursor: pointer;
+}
+.mdne-btn:hover  { filter: brightness(1.1); }
+.mdne-btn:active { filter: brightness(0.95); }
+.mdne-btn-danger { background: #8e2424; }
+.mdne-btn-primary { background: #4b6e2c; }
+
+/* ---------- Dropdown menus ---------- */
+
+.mdne-dropdown { position: relative; }
+.mdne-dropdown-toggle.open { filter: brightness(0.85); }
+
+.mdne-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 200px;
+  background: #4b371e;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+/* Anchor the right-most dropdown to the right edge of its toggle so the
+   menu doesn't spill past the viewport. */
+.mdne-dropdown:last-child .mdne-dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.mdne-dropdown-menu[hidden] { display: none; }
+
+.mdne-menu-item {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 6px 10px;
+  border-radius: 3px;
+  font: inherit;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mdne-menu-item:hover  { background: rgba(255,255,255,0.10); }
+.mdne-menu-item:active { background: rgba(255,255,255,0.18); }
+.mdne-menu-primary { background: #4b6e2c; }
+.mdne-menu-primary:hover { background: #5e8a3a; }
+.mdne-menu-danger  { background: #8e2424; }
+.mdne-menu-danger:hover  { background: #a93030; }
+
+/* ---------- Panes ---------- */
+
+.mdne-panes {
+  display: grid;
+  grid-template-columns: 1fr 6px 1fr;
+  height: 100%; min-height: 0;
+}
+.mdne-panes[data-mode="preview"] { grid-template-columns: 1fr 0 0; }
+.mdne-panes[data-mode="source"]  { grid-template-columns: 0 0 1fr; }
+.mdne-panes[data-mode="preview"] .mdne-divider,
+.mdne-panes[data-mode="preview"] .mdne-editor,
+.mdne-panes[data-mode="source"]  .mdne-divider,
+.mdne-panes[data-mode="source"]  .mdne-preview { display: none; }
+
+.mdne-preview {
+  background: var(--c-bg, #ddd6c5);
+  overflow: auto;
+  min-width: 0;
+}
+.mdne-preview > #mathdown-root { display: block; }
+
+/* Keep the page strictly A4 (210mm × 297mm) — pseudo-paper rendering.
+   When the preview pane is narrower than A4, .mdne-preview's overflow:auto
+   provides horizontal scroll. To see the page in full, drag the divider
+   left or click "Aperçu" (preview-only mode). */
+.mdne-preview .page { margin: 12mm auto; }
+
+.mdne-divider {
+  background: #1a1a1a;
+  cursor: col-resize;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+}
+
+.mdne-editor {
+  display: flex; min-width: 0;
+  background: #fffdf6;
+}
+.mdne-editor textarea {
+  flex: 1; min-width: 0;
+  padding: 12px 14px;
+  border: none; outline: none; resize: none;
+  background: #fffdf6; color: #1a1a1a;
+  font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
+  font-size: 12.5px; line-height: 1.55;
+  tab-size: 2;
+}
+.mdne-editor textarea:focus { box-shadow: inset 3px 0 #b08642; }
+
+/* ---------- Modal (LaTeX shortcuts) ---------- */
+
+.mdne-modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2000;
+}
+.mdne-modal[hidden] { display: none; }
+.mdne-modal-inner {
+  background: white; color: #1a1a1a;
+  border-radius: 6px;
+  width: min(800px, 92%);
+  max-height: 86vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.mdne-modal-inner header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+.mdne-modal-inner h2 { margin: 0; font-size: 15px; color: #4b371e; }
+.mdne-modal-body {
+  padding: 14px 16px; overflow: auto;
+  font-size: 13px;
+}
+.mdne-help { font-size: 12px; color: #666; margin: 0 0 12px 0; }
+.mdne-help code, .mdne-shortcuts code {
+  font-family: 'Menlo', monospace; font-size: 12px;
+  background: #f4eddc; padding: 1px 4px; border-radius: 2px;
+}
+
+.mdne-shortcuts {
+  width: 100%; border-collapse: collapse; font-size: 12.5px;
+  margin-bottom: 14px;
+}
+
+.mdne-export-area {
+  width: 100%; box-sizing: border-box;
+  min-height: 280px;
+  padding: 10px;
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 12px; line-height: 1.5;
+  border: 1px solid #ccc; border-radius: 4px;
+  background: #faf6e9;
+  resize: vertical;
+}
+.mdne-modal-actions {
+  display: flex; gap: 10px; margin-top: 10px;
+}
+.mdne-shortcuts th,
+.mdne-shortcuts td {
+  text-align: left; padding: 4px 8px;
+  border-bottom: 1px solid #eee;
+}
+.mdne-shortcuts th {
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: #6c5a40; background: #faf6e9;
+}
+
+pre.mdne-help {
+  background: #faf6e9; padding: 10px 12px;
+  border-radius: 4px;
+  font-family: 'Menlo', monospace; font-size: 12px;
+  color: #1a1a1a; line-height: 1.5;
+  white-space: pre-wrap;
+  margin: 0;
+}

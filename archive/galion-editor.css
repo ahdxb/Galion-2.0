@@ -1,0 +1,177 @@
+/* ============================================================
+   galion-editor.css — Styles for ?edit=1 mode.
+   Activated only when <body class="galion-edit"> is present.
+   ============================================================ */
+
+/* Hide editor UI on print */
+@media print {
+  body.galion-edit .galion-edit-toolbar,
+  body.galion-edit .galion-edit-panel,
+  body.galion-edit .ge-modal-bg { display: none !important; }
+  body.galion-edit { padding: 0 !important; }
+}
+
+/* Re-arrange page layout when in edit mode: page on left, panel on right */
+body.galion-edit { padding-top: 50px; padding-right: 400px; }
+body.galion-edit .page { margin: 12mm 0 12mm 12mm; }
+
+/* Block highlights */
+[data-anchor] { transition: background-color 0.15s; }
+body.galion-edit [data-anchor] { cursor: pointer; }
+body.galion-edit [data-anchor]:hover { background: #fff8d8; }
+body.galion-edit [data-anchor].galion-active {
+  background: #fff0a8;
+  outline: 2px dashed #b08642;
+  outline-offset: 2px;
+}
+body.galion-edit [data-anchor].galion-rewritten {
+  box-shadow: inset 3px 0 #c79900;
+}
+
+/* Toolbar */
+.galion-edit-toolbar {
+  position: fixed; top: 0; left: 0; right: 380px;
+  background: #4b371e; color: white;
+  padding: 8px 16px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-family: 'Inter', sans-serif; font-size: 13px;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.galion-edit-toolbar .ge-title { font-weight: 700; flex: 1; min-width: 200px; }
+.galion-edit-toolbar .ge-status { font-size: 11px; opacity: 0.85; }
+.galion-edit-toolbar .ge-btn {
+  background: #b08642; color: white; border: none;
+  padding: 6px 12px; border-radius: 3px; cursor: pointer;
+  font-family: inherit; font-size: 12px; font-weight: 500;
+}
+.galion-edit-toolbar .ge-btn:hover { filter: brightness(1.1); }
+
+/* Panel */
+.galion-edit-panel {
+  position: fixed; top: 50px; right: 0; bottom: 0;
+  width: 380px;
+  padding: 14px;
+  background: #faf6e9;
+  border-left: 1px solid #d8c98a;
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+  z-index: 99;
+  box-sizing: border-box;
+}
+.galion-edit-panel h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; margin: 0 0 8px 0;
+  color: #4b371e; border: none; padding: 0;
+}
+.galion-edit-panel .ge-help {
+  font-size: 11px; color: #6c5a40;
+  margin-bottom: 12px; line-height: 1.4;
+}
+
+/* Anno cards */
+.ge-anno {
+  background: white;
+  border: 1px solid #ddd; border-radius: 4px;
+  padding: 8px 10px; margin-bottom: 10px;
+  font-size: 12px;
+  transition: padding 0.15s, opacity 0.15s, border-color 0.15s;
+}
+.ge-anno.active {
+  border-color: #b08642;
+  box-shadow: 0 0 0 2px rgba(176,134,66,0.15);
+}
+.ge-anno.collapsed {
+  padding: 4px 10px;
+  opacity: 0.5;
+}
+.ge-anno.collapsed .ge-field-label,
+.ge-anno.collapsed textarea,
+.ge-anno.collapsed .ge-row-actions {
+  display: none;
+}
+.ge-anno.collapsed:hover { opacity: 0.9; }
+
+.ge-anno-label {
+  font-weight: 600; color: #4b371e;
+  margin-bottom: 4px; cursor: pointer; user-select: none;
+  display: flex; justify-content: space-between;
+  align-items: baseline; gap: 6px;
+}
+.ge-badges { display: flex; gap: 4px; flex-shrink: 0; }
+.ge-badge {
+  font-size: 9px; padding: 1px 5px;
+  border-radius: 6px; font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.ge-badge.empty { background: #eee; color: #999; }
+.ge-badge.has-c { background: #d8eccd; color: #4b6e2c; }
+.ge-badge.has-r { background: #fbe7b8; color: #8a6800; }
+
+.ge-field-label {
+  display: block; font-size: 10px;
+  color: #6c5a40; text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 6px 0 2px 0; font-weight: 600;
+}
+.ge-anno textarea {
+  width: 100%; box-sizing: border-box;
+  min-height: 44px; resize: vertical;
+  border: 1px solid #ccc; border-radius: 3px;
+  font-family: inherit; font-size: 12px;
+  padding: 5px 6px; color: #1a1a1a;
+}
+.ge-anno textarea[data-kind="rewrite"] {
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 11px; min-height: 36px; background: #fffdf6;
+}
+.ge-anno textarea:focus {
+  border-color: #b08642; outline: none;
+  box-shadow: 0 0 0 2px rgba(176,134,66,0.15);
+}
+
+.ge-row-actions { display: flex; gap: 6px; margin-top: 4px; }
+.ge-btn-mini {
+  background: #ddd; color: #333; border: none;
+  padding: 3px 8px; border-radius: 3px;
+  font-family: inherit; font-size: 10px; cursor: pointer;
+}
+.ge-btn-mini:hover { background: #ccc; }
+
+/* Modal */
+.ge-modal-bg {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+}
+.ge-modal {
+  background: white; border-radius: 6px;
+  padding: 20px; max-width: 720px; width: 92%;
+  max-height: 80vh; overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+}
+.ge-modal h2 { margin-top: 0; color: #4b371e; }
+.ge-modal textarea {
+  width: 100%; box-sizing: border-box;
+  min-height: 380px;
+  font-family: 'Menlo', 'Consolas', monospace; font-size: 12px;
+  padding: 10px; border: 1px solid #ccc; border-radius: 4px;
+}
+.ge-modal-actions { display: flex; gap: 10px; margin-top: 10px; }
+.ge-modal .ge-btn {
+  background: #4b371e; color: white; border: none;
+  padding: 8px 14px; border-radius: 3px; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Responsive: very narrow viewport, stack instead of side-by-side */
+@media (max-width: 1100px) {
+  body.galion-edit { padding-right: 0; padding-bottom: 50vh; }
+  body.galion-edit .page { margin: 12mm auto; }
+  .galion-edit-toolbar { right: 0; }
+  .galion-edit-panel {
+    top: auto; bottom: 0; height: 50vh;
+    width: 100%; right: 0; border-left: none;
+    border-top: 2px solid #d8c98a;
+  }
+}

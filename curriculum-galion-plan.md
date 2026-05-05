@@ -10,20 +10,23 @@
 
 ## Volume
 
-6 blocs × (5 fiches + 1 synthèse) = **36 fiches × 2 pages = 72 pages** (~ 36 h). Le bloc F est *bonus*.
+6 blocs × (5 fiches + 1 synthèse) = **36 fiches** ; bloc A étendu à 6 + 1 depuis le 2026-05-05, soit **37 fiches × 2 pages = 74 pages** (~ 37 h). Le bloc F est *bonus*.
 
 ---
 
 ## Bloc A — Décrire et comparer des ensembles
 
+*Plan révisé 2026-05-05 : 6 fiches + 1 synthèse (était 5 + 1). F1 a absorbé l'extension/compréhension de l'ancien F2 et a été allégée par la création d'un F2 dédié aux notations.*
+
 | # | Titre | Concept central | Pré-requis |
 |---|---|---|---|
-| F1 | Ensembles et appartenance | $\in, \notin, \emptyset$, accolades | aucun |
-| F2 | Décrire un ensemble | $\{x \in E \mid P(x)\}$ avec domaine, conjonctions et / ou, « bien défini », égalité par équivalence | F1 |
-| F3 | Inclusion et sous-ensembles | $\subset$, $=$, propriétés (réfl., trans.) | F1, F2 |
-| F4 | Parties d'un ensemble | $\mathcal{P}(E)$, $|\mathcal{P}(E)| = 2^n$ | F3 |
-| F5 | Ensembles de nombres | $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$, irrationnels | F3 |
-| **S1** | **Construire et décrire** | dialogue extension / compréhension / inclusion | bloc A |
+| F1 | Ensembles et appartenance | $\in, \notin$, extension, compréhension (intro), exemples équivalents | aucun |
+| F2 | Notations utiles | $\emptyset$, $\|E\|$ (cardinal), $\mathbb{N}$, $\mathbb{Z}$ ; mention de $\mathbb{Q}, \mathbb{R}$ | F1 |
+| F3 | Décrire un ensemble — bien définir | conditions composées (et / ou), « bien défini » vs ambigu, égalité par équivalence des propriétés | F1, F2 |
+| F4 | Inclusion et sous-ensembles | $\subset$, $\in$ vs $\subset$, réflexivité, transitivité, double inclusion, premiers diagrammes patate | F2, F3 |
+| F5 | Parties d'un ensemble | $\mathcal{P}(E)$, $\|\mathcal{P}(E)\| = 2^{\|E\|}$, diagramme de Hasse | F4 |
+| F6 | Ensembles de nombres | chaîne $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$, irrationnels, preuve guidée que $\sqrt{2} \notin \mathbb{Q}$, teaser Cantor | F4 |
+| **S1** | **Construire et décrire** | dialogue extension / compréhension / inclusion / parties / nombres ; problèmes enchaînés | bloc A |
 
 ## Bloc B — Algèbre des ensembles
 

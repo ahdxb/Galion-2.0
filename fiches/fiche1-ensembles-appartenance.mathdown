@@ -1,0 +1,158 @@
+---
+serie: Galion 2.0
+cours: Théorie des ensembles
+fiche: 1
+titre: Ensembles et appartenance
+niveau: 6e/5e
+langue: fr
+---
+
+# Ensembles et appartenance
+
+## Définition
+
+### Qu'est-ce qu'un ensemble ?
+
+Un :defined[ensemble] est une collection d'objets, qui peuvent être concrets (des objets, des personnes, des villes…) ou abstraits (des nombres, des formes géométriques, ou même d'autres ensembles).
+
+:::exemple
+Quelques exemples d'ensembles dont nous nous resservirons dans cette fiche (les notations $S$, $P$, $M$ sont temporaires, elles ne sont valables que dans cette fiche) :
+
+- $S = $ l'ensemble des saisons : printemps, été, automne, hiver
+- $P = $ l'ensemble des pays d'Europe : France, Allemagne, Espagne, …
+- $M = $ l'ensemble des mois de l'année du calendrier grégorien : janvier, février, mars, avril, …
+:::
+
+Les objets faisant partie d'un ensemble sont appelés ses :defined[éléments].
+
+:::exemple
+Avec les notations de l'exemple précédent :
+- $S$ a 4 éléments : le printemps, l'été, l'automne et l'hiver
+- l'Italie est un élément de $P$
+- $M$ a 12 éléments, et Pluviôse n'est pas un élément de $M$
+:::
+
+
+### Notation $\in$
+
+On introduit ici le symbole $\in$ qui se lit "appartient à". Son contraire se note $\notin$ et se lit "n'appartient pas à".
+
+:::exemple
+Par exemple :
+
+- $\text{Italie} \in P$ : se lit "l'Italie appartient à $P$". On peut aussi dire "l'Italie est un élément de $P$", ou "l'Italie est dans $P$", ou encore "l'Italie fait partie de $P$".
+- $\text{Australie} \notin P$ : se lit "l'Australie n'appartient pas à $P$", "l'Australie n'est pas un élément de $P$", etc.
+:::
+
+Lorsqu'il n'y aura pas de risque de confusion, on notera parfois $a, b, c \in X$ pour dire "$a$, $b$ et $c$ appartiennent à $X$" (au lieu de $a \in X$, $b \in X$, $c \in X$, plus long).
+
+## Description et notations
+
+On peut définir un ensemble de deux façons distinctes qu'on appelle **extension** et **compréhension**.
+
+### Extension
+
+En :defined[extension], on fait une liste de tous les éléments de l'ensemble et on les place entre des *accolades*, séparés par des virgules (ou des points-virgules s'il y a ambiguïté).
+
+:::exemple
+Quelques exemples :
+
+- $Q = \set{1, 3, 5, 7, 9}$ se lit "$Q$ est l'ensemble dont les éléments sont $1$, $3$, $5$, $7$ et $9$" ou "$Q$ est l'ensemble formé des nombres $1$, $3$, $5$, $7$ et $9$".
+- $R = \set{🍎, 🍌, 🥕}$ est l'ensemble composé des trois aliments pomme, banane et carotte.
+:::
+
+::pagebreak
+
+Quand l'ensemble est grand mais que le motif est clair, on peut abréger avec « $\ldots$ », comme on l'a déjà fait naturellement :
+
+:::exemple
+- $\alpha = \set{A, B, \ldots, Y, Z}$ : l'alphabet romain en majuscules, qui contient 26 éléments ($\alpha$ est la première lettre de l'alphabet grec et se lit "alpha").
+- $\beta = \set{\text{a}, \text{à}, \text{abaisser}, \ldots, \text{zygote}, \text{zythum}, \text{zizanie}}$ : les mots du dictionnaire de l'Académie française, qui en contient plus de 60 000 ($\beta$ est la deuxième lettre de l'alphabet grec et se lit "alpha").
+- $\set{0, 1, 2, 3, \ldots}$ : les entiers naturels, qui forment un ensemble infini, que l'on notera toujours $\NN$.
+:::
+
+*Important :* l'écriture est insensible à l'ordre et aux répétitions. Ainsi $\set{1, 2, 3}$, $\set{3, 2, 1}$ et $\set{1, 1, 2, 3}$ désignent *le même ensemble*, ce que l'on écrira naturellement $\set{1, 2, 3} = \set{3, 2, 1} = \set{1, 1, 2, 3}$.
+
+### Compréhension
+
+En :defined[compréhension], on définit un ensemble par une *propriété* qui caractérise ses éléments.
+
+:::exemple
+Voici un exemple d'ensemble défini en compréhension :
+- "L'ensemble des mois de l'année dont le nom en français fait moins de 4 lettres", dont on sait qu'on peut aussi le définir en extension par $\set{\text{juin}, \text{mars}, \text{août}, \text{mai}}$ (l'ordre n'a pas d'importance).
+:::
+
+En mathématiques, on utilise une notation plus compacte avec un trait vertical « $\mid$ » qui se lit « *tels que* » :
+
+:::exemple
+- $D = \setof{n}{n \text{ est un nombre impair inférieur à } 10}$ se lit "$D$ est l'ensemble des $n$ tels que $n$ est un nombre impair inférieur à $10$". En extension : $D = \set{1, 3, 5, 7, 9}$.
+- $E = \setof{x}{x \text{ est une voyelle minuscule}}$ se lit "$E$ est l'ensemble des $x$ tels que $x$ est une voyelle minuscule", et est égal à $E = \set{\text{a}, \text{e}, \text{i}, \text{o}, \text{u}, \text{y}}$.
+:::
+
+Dans les deux exemples ci-dessus, le choix des lettres $n$ et $x$ n'a pas d'importance ; on aurait pu utiliser indifféremment n'importe quel autre symbole. On dit que $n$ et $x$ sont des :defined[variables muettes].
+
+## Exemples de notations équivalentes
+
+Un ensemble peut se définir par extension et par compréhension de multiples façons équivalentes.
+
+:::exemple
+Vérifie que les ensembles suivants sont bien tous égaux :
+
+- $\set{1, 2, 3}$
+- $\set{5, 4, 2, 1, 2, 3, 0}$
+- $\setof{x}{x \in \NN, x \ge 1, x \le 3}$, que l'on peut lire "l'ensemble des $x$ tels que $x$ appartient à Grand N, $x$ est supérieur ou égal à $1$ et $x$ est inférieur ou égal à $3$".
+- $\setof{x \in \NN}{1 \le x \le 3}$, une forme raccourcie de la précédente qu'avec l'habitude tu apprendras à lire naturellement "l'ensemble des entiers naturels $x$ compris entre $1$ et $3$".
+- $\setof{x \in \NN}{0 < x^2 < 10}$
+:::
+
+:::callout[Pour aller plus loin]
+Toute collection d'objets est-elle un ensemble ? Peut-on parler de l'« ensemble de tous les ensembles » ou de l'« ensemble de tous les ensembles qui ne se contiennent pas eux-mêmes » ? Le *paradoxe de Russell* donne une réponse partielle à ces questions (cf. exercice 7 ci-dessous).
+:::
+
+::pagebreak[strong]
+
+## Exercices
+
+:::niveau[1]
+### ★ Application directe
+
+1. Pour chaque ensemble suivant, dis s'il est défini en *extension* ou en *compréhension*.
+   - $\set{2, 4, 6, 8}$
+   - $\setof{x}{x \text{ est un mois de l'année}}$
+   - $\set{\text{lundi}, \text{mardi}, \text{mercredi}, \text{jeudi}, \text{vendredi}, \text{samedi}, \text{dimanche}}$
+   - $\setof{n}{n \text{ est un multiple de 3 strictement inférieur à 20}}$
+
+2. Réécris en extension chacun des ensembles suivants définis en compréhension.
+   - $\setof{n}{n \text{ est un nombre pair compris entre 1 et 11}}$
+   - $\setof{x}{x \text{ est une lettre distincte du mot ANANAS}}$
+   - $\setof{p}{p \text{ est un nombre premier strictement inférieur à 20}}$
+
+3. Vrai ou faux : 
+   - $\set{1, 2, 3} = \set{3, 2, 1}$
+   - $\set{1, 1, 2} = \set{1, 2}$
+   - L'ensemble $\setof{x}{x \text{ est une voyelle minuscule}}$ contient 7 éléments.
+:::
+
+:::niveau[2]
+### ★★ Comprendre et traduire
+
+4. Dans une classe, on note $E$ l'ensemble des élèves qui aiment les épinards et $M$ l'ensemble des élèves qui font de la musique. Donne un sens en français à : $A = \setof{x}{x \in E \text{ et } x \in M}$ , $B = \setof{x}{x \in E \text{ et } x \notin M}$, et $C = \setof{x}{x \notin E \text{ et } x \notin M}$.
+
+5. Décris en compréhension de **deux façons différentes** l'ensemble $Z = \set{2, 4, 6, 8, 10, 12, 14}$.
+
+6. Donne un exemple d'ensemble $X$ vérifiant la contrainte, ou explique pourquoi c'est impossible.
+   - $X$ contient $\set{1}$ comme élément, mais ne contient pas $1$.
+   - $X$ contient à la fois $1$ et $\set{1}$.
+   - $X$ peut s'écrire en extension par exactement $4$ éléments distincts, mais aussi par $3$ éléments distincts.
+:::
+
+:::niveau[3]
+### ★★★ Pousser plus loin
+
+7. **Le paradoxe de Russell.** Soit $\mathfrak{R} = \setof{x}{x \notin x}$, l'« ensemble des ensembles qui ne se contiennent pas eux-mêmes ». 
+   - Suppose que $\mathfrak{R} \in \mathfrak{R}$. Que dit alors la définition de $\mathfrak{R}$ à propos de $\mathfrak{R}$ ? Qu'en penses-tu ? 
+   - Suppose maintenant que $\mathfrak{R} \notin \mathfrak{R}$. Que dit alors la définition de $\mathfrak{R}$ à propos de $\mathfrak{R}$ ? Conclusion ? 
+   - Que peux-tu en déduire sur l'existence de $\mathfrak{R}$ ?
+
+8. **Énumération.** On note $U = \set{1, 2, 3}$. Combien peut-on former d'ensembles différents dont tous les éléments sont pris dans $U$ ? Liste-les. Combien d'entre eux contiennent $3$ comme élément ?
+:::

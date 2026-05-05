@@ -1,0 +1,116 @@
+---
+serie: Galion 2.0
+cours: Théorie des ensembles
+fiche: 2
+titre: Ensembles (suite)
+niveau: 6e/5e
+langue: fr
+---
+
+# Ensembles (suite)
+
+## Cardinal
+
+Si $E$ est un ensemble fini, on appelle :defined[cardinal] de $E$ le nombre de ses éléments, et on le note $|E|$ ou $\text{Card}(E)$ (tu verras parfois $||E||$ ou encore $\#E$). On parle aussi de la « taille » de $E$.
+
+:::exemple
+Quelques exemples :
+- En notant $A = \set{1, 3, 5, 7, 9}$, on a $|A| = 5$
+- $\#\set{🍎, 🍌, 🥕} = 3$
+- Si $B = \set{ \set{0}; \set{0,1}; \set{0,1,2} }$, alors $\text{Card}(B) = 3$ (car $B$ a 3 éléments, qui sont eux-mêmes des ensembles : $\set{0}$, $\set{0,1}$ , et $\set{0,1,2}$).
+:::
+
+## Ensemble vide
+
+Il existe *un et un seul* ensemble qui ne contient aucun élément. On l'appelle l':defined[ensemble vide] et on le note $\emptyset$ ou $\set{}$.
+### Propriétés de l'ensemble vide:
+- Quel que soit l'objet $x$, on a $x \notin \emptyset$ : rien n'appartient au vide.
+- $\text{Card}(\emptyset) = |\emptyset| = 0$.
+
+:::exemple
+-  $\setof{x \in \NN}{x^2 < 0} = \emptyset$, c'est-à-dire que l'ensemble des entiers dont le carré est strictement négatif est vide, car un carré n'est jamais strictement négatif.
+- $\set{\emptyset}$ est l'ensemble qui contient l'ensemble vide. Il a un élément (donc en particulier il n'est pas vide).
+- $\set{ \set{ \emptyset }}$ est l'ensemble qui contient l'ensemble qui contient l'ensemble vide. Il a aussi un cardinal de 1, mais n'est pas égal au précédent !
+:::
+
+## Ensembles de nombres usuels
+
+Certains ensembles infinis reviennent si souvent qu'ils ont chacun leur notation.
+
+- $\NN = \set{0, 1, 2, 3, \ldots}$ est l'ensemble des :defined[entiers naturels]. 
+  - On note aussi $\NN^* = \set{1, 2, 3, \ldots} = \setof{x \in \NN}{x \not= 0}$ l'ensemble des entiers non nuls.
+  - $\NN$ se lit en général "grand N" ou simplement "N" quand il n'y a pas de d'ambiguïté.
+- $\ZZ = \set{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots}$ est l'ensemble des :defined[entiers relatifs]. 
+  - Autrement dit $\ZZ$ est l'ensemble des entiers positifs ou négatifs.
+- $\QQ$ est l'ensemble des :defined[nombres rationnels], c'est-à-dire qui peuvent s'écrire comme une fraction $\frac{p}{q}$ où $p$ et $q$ sont des entiers et $q$ est non nul.
+  - Un même rationnel peut s'écrire de plusieurs façons. Ainsi $\frac{1}{2}$, $\frac{2}{4}$ et $\frac{50}{100}$ sont *des écritures différentes du même nombre*.
+  - Tout entier relatif est rationnel : si $n \in \ZZ$, alors on peut écrire $n = \frac{n}{1}$. L'inverse n'est bien sûr pas vrai!
+
+:::callout[Pour aller plus loin]
+Contrairement à $\NN$ et $\ZZ$, on peut toujours effectuer toutes les opérations $+, -, \times, \div$ dans $\QQ$. Mais on ne peut pas *tout* faire : il n'existe par exemple pas de rationnel $r$ tel que $r^2 = 2$, autrement dit $\sqrt{2} \notin \QQ$. Cf. exercice XX pour une preuve.
+:::
+
+::pagebreak[strong]
+
+## Exercices
+
+:::niveau[1]
+### ★ Application directe
+
+1. Donne le cardinal de chacun des ensembles suivants.
+   :::cols
+   - $\set{2, 4, 6, 8, 10}$
+   - $\set{\text{lundi}, \text{mardi}, \text{mardi}, \text{lundi}}$
+   - $\setof{n \in \NN}{n < 7}$
+   - $\set{\emptyset}$
+   - $\set{\emptyset, \set{\emptyset}}$
+   - $\setof{x \in \NN}{x^2 < 0}$
+   :::
+
+2. Vrai ou faux ?
+   :::cols
+   - $0 \in \emptyset$
+   - $\emptyset \in \set{\emptyset}$
+   - $\emptyset \in \set{0, 1, 2}$
+   - $-3 \in \QQ$
+   - $-\frac{10}{5} \in \ZZ$
+   - $|\emptyset| = 0$
+   - $\setof{n \in \ZZ}{n^2 = 4} = \set{2}$
+   - $\setof{\frac{p}{q}}{p, q \in \Nstar} = \setof{x \in \QQ}{x \ge 0}$
+   :::
+
+3. Réécris en extension chacun des ensembles suivants.
+   :::cols
+   - $\setof{n \in \ZZ}{n^4 < 20}$
+   - $\setof{x}{x \in \NN \text{ et } x \in \emptyset}$
+   :::
+:::
+
+:::niveau[2]
+### ★★ Comprendre et traduire
+
+4. Trouve un ensemble $X$ vérifiant la contrainte donnée, ou explique pourquoi c'est impossible.
+   :::cols
+   - $|X| = 3$ et $\emptyset \in X$.
+     - $|X| = 0$ et $X \neq \emptyset$.
+   - $|X| = 1$ et il existe un élément $a$ de $X$ tel que $\emptyset \in a$ et $\text{Card}(a) = 1$.
+   :::
+
+5. On définit la suite d'ensembles : $X_0 = \emptyset$, $X_1 = \set{X_0}$, $X_2 = \set{X_0, X_1}$, $X_3 = \set{X_0, X_1, X_2}$.
+   - Réécris $X_1, X_2, \text{ et } X_3$ avec uniquement les symboles $\set{}$ et $\emptyset$.
+   - Donne $|X_0|$, $|X_1|$, $|X_2|$ et $|X_3|$.
+   - Si $i, j \in \set{0, 1,2,3}$, quand a-t-on $X_i \in X_j$ ?
+   - Comment définirais-tu $X_n$ pour $n \ge 4$ ? Que penses-tu de $|X_n|$ ?
+
+:::
+
+:::niveau[3]
+### ★★★ Pousser plus loin
+
+6. **$\sqrt{2}$ n'est pas rationnel.** On va démontrer *par l'absurde* que $\sqrt{2}$ n'est pas rationnel, en montrant que si $\sqrt{2} \in \QQ$ était vrai, on aboutirait à une contradiction (quelque chose d'impossible). On suppose donc ici qu'il existe $p, q \in \Nstar$ tels que $\sqrt{2} = \frac{p}{q}$.
+   - Élève cette égalité au carré : que vaut $p^2$ en fonction de $q$ ?
+   - *Petit résultat intermédiaire.* Si $n \in \NN$ est pair, que peux-tu dire de la parité de $n^2$ ? (*Indice : écris $n = 2\times k$ avec $k\in \NN$*). Et si $n$ est impair ? Donc, si $m$ est un entier tel que $m^2$ est pair, que peux-tu dire de la parité de $m$ ?
+   - En utilisant a) et b), que peux-tu dire de la parité de $p^2$ et de $p$ ? Pose $p = 2 p'$ et substitue dans a).
+   - Montre que $q$ est pair. Pose $q = 2 q'$ et substitue.
+   - Construis deux suites *infinies* d'entiers naturels $p_1, p_2, \ldots, p_n, \ldots$ et $q_1, q_2, \ldots, q_n, \ldots$ telles que $\frac{p_1}{q_1} = \frac{p_2}{q_2} = \cdots = \frac{p_n}{q_n} = \cdots = \sqrt{2}$ et $p_1 > p_2 > \cdots > p_n > \cdots$. Explique pourquoi c'est impossible, et conclus.
+:::

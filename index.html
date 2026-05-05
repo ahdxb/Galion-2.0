@@ -68,19 +68,23 @@
   /* Fiche cards */
   .fiches { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 12px; }
   .fiche-card {
+    position: relative;
     background: white;
     border: 0.5pt solid #d4c89e;
     border-radius: 3mm;
-    padding: 14px 18px;
     transition: transform 0.12s, box-shadow 0.12s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
   }
   .fiche-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.10);
     border-color: #b08642;
+  }
+  .fiche-card.legacy { opacity: 0.85; }
+  .fiche-link {
+    display: block;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: inherit;
   }
   .fiche-card .fiche-num {
     font-family: 'Inter', sans-serif;
@@ -99,6 +103,28 @@
   }
   .fiche-card .fiche-blurb {
     font-size: 11.5pt; color: #555; margin: 0;
+  }
+  .fiche-actions {
+    position: absolute;
+    top: 12px; right: 14px;
+    display: flex; gap: 6px;
+  }
+  .fiche-pill {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .fiche-pill-edit { background: #b08642; color: white; }
+  .fiche-pill-edit:hover { background: #8e6633; color: white; }
+  .fiche-pill-legacy {
+    background: #f3eedb; color: #6c5a40;
+    border: 0.5pt dashed #b08642;
+    font-style: italic; cursor: default;
   }
 
   ul, ol { font-size: 13pt; }
@@ -154,31 +180,50 @@
 
   <h2>Fiches disponibles</h2>
   <div class="fiches">
-    <a href="fiche1-ensembles-appartenance.html" class="fiche-card">
-      <div class="fiche-num">Fiche 1</div>
-      <div class="fiche-title">Ensembles et appartenance</div>
-      <p class="fiche-blurb">Notion d'ensemble, élément, $\in$, $\notin$, ensemble vide $\emptyset$, cardinal $|E|$. Premières rencontres avec $\mathbb{N}$ et $\mathbb{Z}$.</p>
-    </a>
-    <a href="fiche2-decrire-un-ensemble.html" class="fiche-card">
-      <div class="fiche-num">Fiche 2</div>
-      <div class="fiche-title">Décrire un ensemble</div>
-      <p class="fiche-blurb">Compréhension restreinte $\{x \in E \mid P(x)\}$ avec domaine. Conditions composées (et / ou). « Bien défini » vs ambigu. Égalité par équivalence des propriétés.</p>
-    </a>
-    <a href="fiche3-inclusion.html" class="fiche-card">
-      <div class="fiche-num">Fiche 3</div>
-      <div class="fiche-title">Inclusion et sous-ensembles</div>
-      <p class="fiche-blurb">Inclusion $\subset$, distinction $\in$ contre $\subset$, réflexivité, transitivité, égalité par double inclusion. Premiers diagrammes patate.</p>
-    </a>
-    <a href="fiche4-parties-d-un-ensemble.html" class="fiche-card">
-      <div class="fiche-num">Fiche 4</div>
-      <div class="fiche-title">Parties d'un ensemble</div>
-      <p class="fiche-blurb">L'ensemble des parties $\mathcal{P}(E)$, lien avec $\subset$, cardinal $|\mathcal{P}(E)| = 2^{|E|}$. Diagramme de Hasse de $\mathcal{P}(\{a, b, c\})$.</p>
-    </a>
-    <a href="fiche5-ensembles-de-nombres.html" class="fiche-card">
-      <div class="fiche-num">Fiche 5</div>
-      <div class="fiche-title">Ensembles de nombres</div>
-      <p class="fiche-blurb">Chaîne d'inclusions $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$. Irrationnels, preuve guidée que $\sqrt{2} \notin \mathbb{Q}$. Teaser Cantor.</p>
-    </a>
+    <div class="fiche-card">
+      <div class="fiche-actions">
+        <a href="fiches/fiche1-ensembles-appartenance.html?edit=1" class="fiche-pill fiche-pill-edit" title="Ouvrir l'éditeur Mathdown">✏︎ Éditer</a>
+      </div>
+      <a href="fiches/fiche1-ensembles-appartenance.html" class="fiche-link">
+        <div class="fiche-num">Fiche 1</div>
+        <div class="fiche-title">Ensembles et appartenance</div>
+        <p class="fiche-blurb">Notion d'ensemble, élément, $\in$, $\notin$, ensemble vide $\emptyset$, cardinal $|E|$. Premières rencontres avec $\mathbb{N}$ et $\mathbb{Z}$.</p>
+      </a>
+    </div>
+    <div class="fiche-card">
+      <div class="fiche-actions">
+        <a href="fiches/fiche2-notations-utiles.html?edit=1" class="fiche-pill fiche-pill-edit" title="Ouvrir l'éditeur Mathdown">✏︎ Éditer</a>
+      </div>
+      <a href="fiches/fiche2-notations-utiles.html" class="fiche-link">
+        <div class="fiche-num">Fiche 2</div>
+        <div class="fiche-title">Notations utiles</div>
+        <p class="fiche-blurb">Ensemble vide $\emptyset$, cardinal $|E|$, premiers ensembles de nombres $\mathbb{N}$ et $\mathbb{Z}$. Ouverture vers $\mathbb{Q}$ et $\mathbb{R}$.</p>
+      </a>
+    </div>
+    <div class="fiche-card legacy">
+      <div class="fiche-actions"><span class="fiche-pill fiche-pill-legacy">à écrire</span></div>
+      <a href="archive/fiche3-inclusion.html" class="fiche-link">
+        <div class="fiche-num">Fiche 3</div>
+        <div class="fiche-title">Inclusion et sous-ensembles</div>
+        <p class="fiche-blurb">Inclusion $\subset$, distinction $\in$ contre $\subset$, réflexivité, transitivité, égalité par double inclusion. Premiers diagrammes patate.</p>
+      </a>
+    </div>
+    <div class="fiche-card legacy">
+      <div class="fiche-actions"><span class="fiche-pill fiche-pill-legacy">à écrire</span></div>
+      <a href="archive/fiche4-parties-d-un-ensemble.html" class="fiche-link">
+        <div class="fiche-num">Fiche 4</div>
+        <div class="fiche-title">Parties d'un ensemble</div>
+        <p class="fiche-blurb">L'ensemble des parties $\mathcal{P}(E)$, lien avec $\subset$, cardinal $|\mathcal{P}(E)| = 2^{|E|}$. Diagramme de Hasse de $\mathcal{P}(\{a, b, c\})$.</p>
+      </a>
+    </div>
+    <div class="fiche-card legacy">
+      <div class="fiche-actions"><span class="fiche-pill fiche-pill-legacy">à écrire</span></div>
+      <a href="archive/fiche5-ensembles-de-nombres.html" class="fiche-link">
+        <div class="fiche-num">Fiche 5</div>
+        <div class="fiche-title">Ensembles de nombres</div>
+        <p class="fiche-blurb">Chaîne d'inclusions $\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R}$. Irrationnels, preuve guidée que $\sqrt{2} \notin \mathbb{Q}$. Teaser Cantor.</p>
+      </a>
+    </div>
   </div>
 
   <h2>Format</h2>
