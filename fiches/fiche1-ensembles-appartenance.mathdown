@@ -67,7 +67,7 @@ Quand l'ensemble est grand mais que le motif est clair, on peut abréger avec «
 
 :::exemple
 - $\alpha = \set{A, B, \ldots, Y, Z}$ : l'alphabet romain en majuscules, qui contient 26 éléments ($\alpha$ est la première lettre de l'alphabet grec et se lit "alpha").
-- $\beta = \set{\text{a}, \text{à}, \text{abaisser}, \ldots, \text{zygote}, \text{zythum}, \text{zizanie}}$ : les mots du dictionnaire de l'Académie française, qui en contient plus de 60 000 ($\beta$ est la deuxième lettre de l'alphabet grec et se lit "alpha").
+- $\beta = \set{\text{a}, \text{à}, \text{abaisser}, \ldots, \text{zygote}, \text{zythum}, \text{zizanie}}$ : les mots du dictionnaire de l'Académie française, qui en contient plus de 60 000 ($\beta$ est la deuxième lettre de l'alphabet grec et se lit "beta").
 - $\set{0, 1, 2, 3, \ldots}$ : les entiers naturels, qui forment un ensemble infini, que l'on notera toujours $\NN$.
 :::
 
@@ -154,5 +154,5 @@ Toute collection d'objets est-elle un ensemble ? Peut-on parler de l'« ensemble
    - Suppose maintenant que $\mathfrak{R} \notin \mathfrak{R}$. Que dit alors la définition de $\mathfrak{R}$ à propos de $\mathfrak{R}$ ? Conclusion ? 
    - Que peux-tu en déduire sur l'existence de $\mathfrak{R}$ ?
 
-8. **Énumération.** On note $U = \set{1, 2, 3}$. Combien peut-on former d'ensembles différents dont tous les éléments sont pris dans $U$ ? Liste-les. Combien d'entre eux contiennent $3$ comme élément ?
+8. **Énumération.** On note $U = \set{1, 2, 3}$. Combien peut-on former d'ensembles différents dont tous les éléments sont pris dans $U$ (en n'oubliant pas l'ensemble vide) ? Liste-les. Combien d'entre eux contiennent $3$ comme élément ?
 :::

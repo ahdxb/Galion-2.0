@@ -1,12 +1,25 @@
 # Galion 2.0
 
-Fiches d'apprentissage de mathématiques pour la 6<sup>e</sup>/5<sup>e</sup>, inspirées des fiches Galion (équipe lyonnaise, 1968). Le projet est en deux couches&nbsp;: un **contenu** (les fiches) et une **chaîne d'outils** (Mathdown) pour l'écrire, le rendre et l'éditer.
+Fiches d'apprentissage de mathématiques pour le collège (6<sup>e</sup> à 3<sup>e</sup>), inspirées des fiches Galion (équipe lyonnaise, 1968) et du programme de mathématiques modernes (réforme Lichnerowicz, 1969–1975). Le projet est en deux couches&nbsp;: un **contenu** (les fiches) et une **chaîne d'outils** (Mathdown) pour l'écrire, le rendre et l'éditer.
 
 **[→ Voir le site](https://ahdxb.github.io/Galion-2.0/)**
 
 ## 1. Objectifs
 
-**Contenu** — 36 fiches en six blocs (théorie des ensembles, applications, ordre, cardinaux). Une fiche = 2 pages A4 imprimables, ≈ 1 heure de travail effectif. Tri des exercices par difficulté ★ / ★★ / ★★★. Voir [`curriculum-galion-plan.md`](curriculum-galion-plan.md) pour le plan complet et l'esprit pédagogique.
+**Contenu** — un curriculum complet en huit blocs couvrant les fondations ensemblistes, l'algèbre des ensembles, les relations, l'ordre, les applications, l'arithmétique, les structures algébriques, et un bonus cardinaux/infini. Une fiche = 2 pages A4 imprimables, ≈ 1 heure de travail effectif. Tri des exercices par difficulté ★ / ★★ / ★★★. Voir [`curriculum-galion-plan.md`](curriculum-galion-plan.md) pour le plan complet et l'esprit pédagogique.
+
+**Niveau cible par bloc** (correspondance avec le programme de mathématiques modernes des années 1970)&nbsp;:
+
+| Bloc | Sujet | Niveau 70s |
+|---|---|---|
+| A | Décrire et comparer des ensembles | 6<sup>e</sup>/5<sup>e</sup> |
+| B | Algèbre des ensembles | 5<sup>e</sup>/4<sup>e</sup> |
+| C | Relations et équivalence | 4<sup>e</sup> |
+| D | Ordre | 4<sup>e</sup>/3<sup>e</sup> |
+| E | Applications | 3<sup>e</sup>/2<sup>nde</sup> |
+| F | Arithmétique | parallèle 6<sup>e</sup>–3<sup>e</sup> |
+| G | Structures algébriques | 4<sup>e</sup>/3<sup>e</sup> |
+| H | Cardinaux et infini *(bonus)* | post-bac |
 
 **Outils** — découpler **forme** (mise en page, typographie, couleurs) et **substance** (le texte de la fiche, les notations, les exercices). Permettre&nbsp;:
 

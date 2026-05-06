@@ -47,7 +47,7 @@ Certains ensembles infinis reviennent si souvent qu'ils ont chacun leur notation
   - Tout entier relatif est rationnel : si $n \in \ZZ$, alors on peut écrire $n = \frac{n}{1}$. L'inverse n'est bien sûr pas vrai!
 
 :::callout[Pour aller plus loin]
-Contrairement à $\NN$ et $\ZZ$, on peut toujours effectuer toutes les opérations $+, -, \times, \div$ dans $\QQ$. Mais on ne peut pas *tout* faire : il n'existe par exemple pas de rationnel $r$ tel que $r^2 = 2$, autrement dit $\sqrt{2} \notin \QQ$. Cf. exercice XX pour une preuve.
+Contrairement à $\NN$ et $\ZZ$, on peut toujours effectuer toutes les opérations $+, -, \times, \div$ dans $\QQ$. Mais on ne peut pas *tout* faire : il n'existe par exemple pas de rationnel $r$ tel que $r^2 = 2$, autrement dit $\sqrt{2} \notin \QQ$. Cf. exercice 6 pour une preuve.
 :::
 
 ::pagebreak[strong]
